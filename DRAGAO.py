@@ -9,7 +9,7 @@ from os import path
 img_dir = path.join(path.dirname(__file__), 'img')
 snd_dir = path.join(path.dirname(__file__), 'snd')
 # Dados gerais do jogo.
-WIDTH = 800 # Largura da tela
+WIDTH = 480 # Largura da tela
 HEIGHT = 480 # Altura da tela
 FPS = 60 # Frames por segundo
 
@@ -63,7 +63,7 @@ class Player2(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         
-        player_img = pygame.image.load(path.join(img_dir, "spritedragao.png")).convert()
+        player_img = pygame.image.load(path.join(img_dir, "dragaoroxo.png")).convert()
         self.image = player_img
         
         self.image = pygame.transform.scale(player_img,(50,30))
@@ -100,7 +100,7 @@ class Player3(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         
-        player_img = pygame.image.load(path.join(img_dir, "spritedragao.png")).convert()
+        player_img = pygame.image.load(path.join(img_dir, "dragaoazul.png")).convert()
         self.image = player_img
         
         self.image = pygame.transform.scale(player_img,(50,30))
@@ -137,7 +137,7 @@ class Player4(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         
-        player_img = pygame.image.load(path.join(img_dir, "spritedragao.png")).convert()
+        player_img = pygame.image.load(path.join(img_dir, "dragaoverde.png")).convert()
         self.image = player_img
         
         self.image = pygame.transform.scale(player_img,(50,30))
