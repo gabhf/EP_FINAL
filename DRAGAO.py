@@ -29,7 +29,7 @@ class Player(pygame.sprite.Sprite):
         player_img = pygame.image.load(path.join(img_dir, "spritedragao.png")).convert()
         self.image = player_img
         
-        self.image = pygame.transform.scale(player_img,(20,20))
+        self.image = pygame.transform.scale(player_img,(50,30))
         
         self.image.set_colorkey(WHITE)
         
@@ -49,27 +49,126 @@ class Player(pygame.sprite.Sprite):
         
         if self.rect.right > WIDTH:
             self.rect.right = WIDTH
+        
         if self.rect.left < 0:
             self.rect.left = 0
 
-class Fundo(pygame.sprite.Sprite):
+        if self.rect.bottom > HEIGHT:
+            self.rect.bottom = HEIGHT
+
+        if self.rect.top < 0:
+            self.rect.top = 0
+
+class Player2(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         
-        player_img = pygame.image.load(path.join(img_dir, "Fundo montanhas.png")).convert()
+        player_img = pygame.image.load(path.join(img_dir, "spritedragao.png")).convert()
         self.image = player_img
         
-        self.image.set_colorkey
+        self.image = pygame.transform.scale(player_img,(50,30))
+        
+        self.image.set_colorkey(WHITE)
         
         self.rect = self.image.get_rect()
         
-        self.rect.centerx = WIDTH / 2
-        self.rect.bottom = HEIGHT
+        self.rect.centerx = 20
+        self.rect.bottom = HEIGHT - 90
         
         self.speedx = 0
+        self.speedy = 0
+
+        self.radius = 25
     
     def update(self):
         self.rect.x += self.speedx
+        self.rect.y += self.speedy
+        
+        if self.rect.right > WIDTH:
+            self.rect.right = WIDTH
+        
+        if self.rect.left < 0:
+            self.rect.left = 0
+
+        if self.rect.bottom > HEIGHT:
+            self.rect.bottom = HEIGHT
+
+        if self.rect.top < 0:
+            self.rect.top = 0
+
+class Player3(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        
+        player_img = pygame.image.load(path.join(img_dir, "spritedragao.png")).convert()
+        self.image = player_img
+        
+        self.image = pygame.transform.scale(player_img,(50,30))
+        
+        self.image.set_colorkey(WHITE)
+        
+        self.rect = self.image.get_rect()
+        
+        self.rect.centerx = WIDTH - 20
+        self.rect.bottom = 40
+        
+        self.speedx = 0
+        self.speedy = 0
+
+        self.radius = 25
+    
+    def update(self):
+        self.rect.x += self.speedx
+        self.rect.y += self.speedy
+        
+        if self.rect.right > WIDTH:
+            self.rect.right = WIDTH
+        
+        if self.rect.left < 0:
+            self.rect.left = 0
+
+        if self.rect.bottom > HEIGHT:
+            self.rect.bottom = HEIGHT
+
+        if self.rect.top < 0:
+            self.rect.top = 0            
+
+class Player4(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        
+        player_img = pygame.image.load(path.join(img_dir, "spritedragao.png")).convert()
+        self.image = player_img
+        
+        self.image = pygame.transform.scale(player_img,(50,30))
+        
+        self.image.set_colorkey(WHITE)
+        
+        self.rect = self.image.get_rect()
+        
+        self.rect.centerx = WIDTH - 20
+        self.rect.bottom = 100
+        
+        self.speedx = 0
+        self.speedy = 0
+
+        self.radius = 25
+    
+    def update(self):
+        self.rect.x += self.speedx
+        self.rect.y += self.speedy
+        
+        if self.rect.right > WIDTH:
+            self.rect.right = WIDTH
+        
+        if self.rect.left < 0:
+            self.rect.left = 0
+
+        if self.rect.bottom > HEIGHT:
+            self.rect.bottom = HEIGHT
+
+        if self.rect.top < 0:
+            self.rect.top = 0
 # Inicialização do Pygame.
 pygame.init()
 pygame.mixer.init()
@@ -83,14 +182,22 @@ pygame.display.set_caption("Dragao")
 # Variável para o ajuste de velocidade
 clock = pygame.time.Clock()
 
+background = pygame.image.load(path.join(img_dir, 'batlle field.jpg')).convert()
+background_rect = background.get_rect()
+backgorund_rect = pygame.transform.scale(background,(WIDTH,HEIGHT))
 
 
-fundo = Fundo()
-player = Player()
+player = Player ()
+player2= Player2()
+player3= Player3()
+player4= Player4()
 
 all_sprites = pygame.sprite.Group()
-all_sprites.add(fundo)
 all_sprites.add(player)
+all_sprites.add(player2)
+all_sprites.add(player3)
+all_sprites.add(player4)
+
 
 
 try:
@@ -110,13 +217,13 @@ try:
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    player.speedx = -5
+                    player.speedx = -2
                 if event.key == pygame.K_RIGHT:
-                    player.speedx = 5
+                    player.speedx = 2
                 if event.key == pygame.K_DOWN:
-                    player.speedy = 5
+                    player.speedy = 2
                 if event.key == pygame.K_UP:
-                    player.speedy = -5    
+                    player.speedy = -2    
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
                     player.speedx = 0
@@ -129,9 +236,8 @@ try:
                                       
         all_sprites.update()
             
-        screen.fill(WHITE)
-
-
+        screen.fill(BLACK)
+        screen.blit(background, background_rect)
         all_sprites.draw(screen)
         
         # Depois de desenhar tudo, inverte o display.
