@@ -26,8 +26,12 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         
+<<<<<<< HEAD
         player_img = pygame.image.load(path.join(img_dir, "spritedragao.png")).convert()
 
+=======
+        player_img = pygame.image.load(path.join(img_dir, "dragaovermelhor.png")).convert()
+>>>>>>> db0c8af9979eb56b6f0e8974404289ce61ee58a7
         self.image = player_img
         
         self.image = pygame.transform.scale(player_img,(40,30))
@@ -43,8 +47,19 @@ class Player(pygame.sprite.Sprite):
         self.speedy = 0
 
         self.radius = 25
-    
+        
+        self.direita = False
+        self.esquerda = False
+        self.baixo = False
+        self.cima = False
     def update(self):
+        if self.direita:
+            player_img = pygame.image.load(path.join(img_dir, "dragaovermelhor.png")).convert()
+            self.image = player_img
+            self.image = pygame.transform.scale(player_img,(30,18))
+        
+            self.image.set_colorkey(WHITE)
+            
         self.rect.x += self.speedx
         self.rect.y += self.speedy
         
@@ -81,7 +96,13 @@ class Player2(pygame.sprite.Sprite):
 
         self.radius = 25
     
+        self.direita = False
+        
     def update(self):
+        if self.direita:
+            player_img = pygame.image.load(path.join(img_dir, "dragon right.png")).convert()
+            self.image = player_img
+            
         self.rect.x += self.speedx
         self.rect.y += self.speedy
         
@@ -191,12 +212,6 @@ pygame.display.set_caption("Dragao")
 # Variável para o ajuste de velocidade
 clock = pygame.time.Clock()
 
-<<<<<<< HEAD
-=======
-background = pygame.image.load(path.join(img_dir, 'novocenario.png')).convert()
-background_rect = background.get_rect()
-
->>>>>>> d0aea66f9d4368e88d36fc4e815e759551532cb2
 
 player = Player ()
 player2= Player2()
@@ -282,8 +297,10 @@ try:
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
+                    
                     player.speedx = -2
                 if event.key == pygame.K_RIGHT:
+                    player.direita = True
                     player.speedx = 2
                 if event.key == pygame.K_DOWN:
                     player.speedy = 2
