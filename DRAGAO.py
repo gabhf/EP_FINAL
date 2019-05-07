@@ -26,7 +26,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         
-        player_img = pygame.image.load(path.join(img_dir, "spritedragao.png")).convert()
+        player_img = pygame.image.load(path.join(img_dir, "dragaovermelhor.png")).convert()
         self.image = player_img
         
         self.image = pygame.transform.scale(player_img,(30,18))
@@ -42,8 +42,19 @@ class Player(pygame.sprite.Sprite):
         self.speedy = 0
 
         self.radius = 25
-    
+        
+        self.direita = False
+        self.esquerda = False
+        self.baixo = False
+        self.cima = False
     def update(self):
+        if self.direita:
+            player_img = pygame.image.load(path.join(img_dir, "dragaovermelhor.png")).convert()
+            self.image = player_img
+            self.image = pygame.transform.scale(player_img,(30,18))
+        
+            self.image.set_colorkey(WHITE)
+            
         self.rect.x += self.speedx
         self.rect.y += self.speedy
         
@@ -80,7 +91,13 @@ class Player2(pygame.sprite.Sprite):
 
         self.radius = 25
     
+        self.direita = False
+        
     def update(self):
+        if self.direita:
+            player_img = pygame.image.load(path.join(img_dir, "dragon right.png")).convert()
+            self.image = player_img
+            
         self.rect.x += self.speedx
         self.rect.y += self.speedy
         
@@ -216,8 +233,10 @@ try:
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
+                    
                     player.speedx = -2
                 if event.key == pygame.K_RIGHT:
+                    player.direita = True
                     player.speedx = 2
                 if event.key == pygame.K_DOWN:
                     player.speedy = 2
