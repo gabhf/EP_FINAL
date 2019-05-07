@@ -264,10 +264,10 @@ mapa = [
 "W                                                W",
 "W                                                W",
 "W                                                W",
-"WWWW                                             W",
-"W     W                                          W",
-"W     W                                          W",
-"W     W                                          W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W      W       W        W        W       W       W",
 "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
 ]
 
