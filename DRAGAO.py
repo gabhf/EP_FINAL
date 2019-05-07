@@ -26,7 +26,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         
-        player_img = pygame.image.load(path.join(img_dir, "dragaovermelhor.png")).convert()
+        player_img = pygame.image.load(path.join(img_dir, "dragaovermelhou.png")).convert()
         self.image = player_img
         
         self.image = pygame.transform.scale(player_img,(30,18))
@@ -47,6 +47,7 @@ class Player(pygame.sprite.Sprite):
         self.esquerda = False
         self.baixo = False
         self.cima = False
+        
     def update(self):
         if self.direita:
             player_img = pygame.image.load(path.join(img_dir, "dragaovermelhor.png")).convert()
@@ -54,6 +55,27 @@ class Player(pygame.sprite.Sprite):
             self.image = pygame.transform.scale(player_img,(30,18))
         
             self.image.set_colorkey(WHITE)
+            
+        elif self.esquerda:
+            player_img = pygame.image.load(path.join(img_dir, "dragaovermelhol.png")).convert()
+            self.image = player_img
+            self.image = pygame.transform.scale(player_img,(30,18))
+            
+            self.image.set_colorkey(WHITE)
+        
+        elif self.baixo:
+            player_img = pygame.image.load(path.join(img_dir, "dragaovermelhod.png")).convert()
+            self.image = player_img
+            self.image = pygame.transform.scale(player_img,(30,18))
+        
+            self.image.set_colorkey(WHITE)
+        elif self.cima:
+            player_img = pygame.image.load(path.join(img_dir, "dragaovermelhou.png")).convert()
+            self.image = player_img
+            self.image = pygame.transform.scale(player_img,(30,18))
+        
+            self.image.set_colorkey(WHITE)
+        
             
         self.rect.x += self.speedx
         self.rect.y += self.speedy
@@ -233,23 +255,30 @@ try:
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    
+                    player.esquerda = True
                     player.speedx = -2
                 if event.key == pygame.K_RIGHT:
                     player.direita = True
                     player.speedx = 2
                 if event.key == pygame.K_DOWN:
+                    player.baixo = True
                     player.speedy = 2
                 if event.key == pygame.K_UP:
-                    player.speedy = -2    
+                    player.cima = True
+                    player.speedy = -2   
+                    
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
+                    player.esquerda = False
                     player.speedx = 0
                 if event.key == pygame.K_RIGHT:
+                    player.direita = False
                     player.speedx = 0
                 if event.key == pygame.K_UP:
+                    player.cima = False
                     player.speedy = 0
                 if event.key == pygame.K_DOWN:
+                    player.baixo = False
                     player.speedy = 0
                                       
         all_sprites.update()
