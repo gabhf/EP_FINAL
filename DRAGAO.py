@@ -9,8 +9,8 @@ from os import path
 img_dir = path.join(path.dirname(__file__), 'img')
 snd_dir = path.join(path.dirname(__file__), 'snd')
 # Dados gerais do jogo.
-WIDTH = 550 # Largura da tela
-HEIGHT = 340 # Altura da tela
+WIDTH = 800 # Largura da tela
+HEIGHT = 600 # Altura da tela
 FPS = 60 # Frames por segundo
 
 # Define algumas variáveis com as cores básicas
@@ -27,9 +27,10 @@ class Player(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         
         player_img = pygame.image.load(path.join(img_dir, "spritedragao.png")).convert()
+
         self.image = player_img
         
-        self.image = pygame.transform.scale(player_img,(30,18))
+        self.image = pygame.transform.scale(player_img,(40,30))
         
         self.image.set_colorkey(WHITE)
         
@@ -58,15 +59,15 @@ class Player(pygame.sprite.Sprite):
 
         if self.rect.top < 0:
             self.rect.top = 0
-
 class Player2(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         
         player_img = pygame.image.load(path.join(img_dir, "dragaoroxo.png")).convert()
+
         self.image = player_img
         
-        self.image = pygame.transform.scale(player_img,(30, 18))
+        self.image = pygame.transform.scale(player_img,(40, 30))
         
         self.image.set_colorkey(WHITE)
         
@@ -103,7 +104,7 @@ class Player3(pygame.sprite.Sprite):
         player_img = pygame.image.load(path.join(img_dir, "dragaoazul.png")).convert()
         self.image = player_img
         
-        self.image = pygame.transform.scale(player_img,(30,18))
+        self.image = pygame.transform.scale(player_img,(40,30))
         
         self.image.set_colorkey(WHITE)
         
@@ -138,9 +139,10 @@ class Player4(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         
         player_img = pygame.image.load(path.join(img_dir, "dragaoverde.png")).convert()
+
         self.image = player_img
         
-        self.image = pygame.transform.scale(player_img,(30,18))
+        self.image = pygame.transform.scale(player_img,(40,30))
         
         self.image.set_colorkey(WHITE)
         
@@ -169,6 +171,13 @@ class Player4(pygame.sprite.Sprite):
 
         if self.rect.top < 0:
             self.rect.top = 0
+#cria classe de parede
+class Parede(object):
+    def __init__(self, pos):
+        paredes.append(self)
+        self.rect = pygame.Rect(pos[0], pos[1], 16,15 )
+
+
 # Inicialização do Pygame.
 pygame.init()
 pygame.mixer.init()
@@ -182,10 +191,6 @@ pygame.display.set_caption("Dragao")
 # Variável para o ajuste de velocidade
 clock = pygame.time.Clock()
 
-background = pygame.image.load(path.join(img_dir, '14-shading.png')).convert()
-background_rect = background.get_rect()
-backgorund_rect = pygame.transform.scale(background,(WIDTH,HEIGHT))
-
 
 player = Player ()
 player2= Player2()
@@ -198,7 +203,61 @@ all_sprites.add(player2)
 all_sprites.add(player3)
 all_sprites.add(player4)
 
+#cria a lista de paredes
+paredes = []
 
+#cria o mapa
+mapa = [
+"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+"W                                        W       W",
+"W                                        W       W",
+"W                                        W       W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                             WWWW",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"W                                                W",
+"WWWW                                             W",
+"W    W                                           W",
+"W    W                                           W",
+"W    W                                           W",
+"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+]
+
+x = y = 0
+for linha in mapa:
+    for coluna in linha:
+        if coluna == "W":
+            Parede((x, y))
+        x += 16
+    y += 15
+    x = 0
 
 try:
     
@@ -237,7 +296,8 @@ try:
         all_sprites.update()
             
         screen.fill(BLACK)
-        screen.blit(background, background_rect)
+        for parede in paredes:
+            pygame.draw.rect(screen, (WHITE), parede.rect)
         all_sprites.draw(screen)
         
         # Depois de desenhar tudo, inverte o display.
