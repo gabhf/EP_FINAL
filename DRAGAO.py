@@ -191,6 +191,12 @@ pygame.display.set_caption("Dragao")
 # Variável para o ajuste de velocidade
 clock = pygame.time.Clock()
 
+<<<<<<< HEAD
+=======
+background = pygame.image.load(path.join(img_dir, 'novocenario.png')).convert()
+background_rect = background.get_rect()
+
+>>>>>>> d0aea66f9d4368e88d36fc4e815e759551532cb2
 
 player = Player ()
 player2= Player2()
@@ -244,9 +250,9 @@ mapa = [
 "W                                                W",
 "W                                                W",
 "WWWW                                             W",
-"W    W                                           W",
-"W    W                                           W",
-"W    W                                           W",
+"W     W                                          W",
+"W     W                                          W",
+"W     W                                          W",
 "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
 ]
 
