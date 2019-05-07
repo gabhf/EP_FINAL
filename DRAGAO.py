@@ -182,9 +182,8 @@ pygame.display.set_caption("Dragao")
 # Variável para o ajuste de velocidade
 clock = pygame.time.Clock()
 
-background = pygame.image.load(path.join(img_dir, '14-shading.png')).convert()
+background = pygame.image.load(path.join(img_dir, 'novocenario.png')).convert()
 background_rect = background.get_rect()
-backgorund_rect = pygame.transform.scale(background,(WIDTH,HEIGHT))
 
 
 player = Player ()
