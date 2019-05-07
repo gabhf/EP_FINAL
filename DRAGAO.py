@@ -53,27 +53,27 @@ class Player(pygame.sprite.Sprite):
         if self.direita:
             player_img = pygame.image.load(path.join(img_dir, "dragaovermelhor.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(30,18))
+            self.image = pygame.transform.scale(player_img,(40,30))
         
             self.image.set_colorkey(WHITE)
             
         elif self.esquerda:
             player_img = pygame.image.load(path.join(img_dir, "dragaovermelhol.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(30,18))
+            self.image = pygame.transform.scale(player_img,(40,30))
             
             self.image.set_colorkey(WHITE)
         
         elif self.baixo:
             player_img = pygame.image.load(path.join(img_dir, "dragaovermelhod.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(30,18))
+            self.image = pygame.transform.scale(player_img,(40,30))
         
             self.image.set_colorkey(WHITE)
         elif self.cima:
             player_img = pygame.image.load(path.join(img_dir, "dragaovermelhou.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(30,18))
+            self.image = pygame.transform.scale(player_img,(40,30))
         
             self.image.set_colorkey(WHITE)
         
@@ -214,8 +214,39 @@ class Player4(pygame.sprite.Sprite):
 class Parede(object):
     def __init__(self, pos):
         paredes.append(self)
-        self.rect = pygame.Rect(pos[0], pos[1], 16,15 )
-
+        self.rect = pygame.Rect(pos[0], pos[1], 14,17 )
+#cria o projétil do dragão
+class Bullet(pygame.sprite.Sprite):
+    
+    # Construtor da classe.
+    def __init__(self, x, y):
+        
+        # Construtor da classe pai (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+        
+        # Carregando a imagem de fundo.
+        bullet_img = pygame.image.load(path.join(img_dir, "laserRed16.png")).convert()
+        self.image = bullet_img
+        
+        # Deixando transparente.
+        self.image.set_colorkey(BLACK)
+        
+        # Detalhes sobre o posicionamento.
+        self.rect = self.image.get_rect()
+        
+        # Coloca no lugar inicial definido em x, y do constutor
+        self.rect.bottom = y
+        self.rect.centerx = x
+        self.speedy = 0
+        self.speedx = 0
+    # Metodo que atualiza a posição da navinha
+    def update(self):
+        self.rect.y += self.speedy
+        self.rect.x += self.speedx
+        
+        # Se o tiro passar do inicio da tela, morre.
+        if self.rect.bottom < 0:
+            self.kill()
 
 # Inicialização do Pygame.
 pygame.init()
@@ -230,6 +261,8 @@ pygame.display.set_caption("Dragao")
 # Variável para o ajuste de velocidade
 clock = pygame.time.Clock()
 
+background = pygame.image.load(path.join(img_dir, 'cenario800x600.png')).convert()
+background_rect = background.get_rect()
 
 player = Player ()
 player2= Player2()
@@ -242,51 +275,47 @@ all_sprites.add(player2)
 all_sprites.add(player3)
 all_sprites.add(player4)
 
+bullets = pygame.sprite.Group()
 #cria a lista de paredes
 paredes = []
 
 #cria o mapa
 mapa = [
-"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-"W                                        W       W",
-"W                                        W       W",
-"W                                        W       W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                             WWWW",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W                                                W",
-"W      W       W        W        W       W       W",
-"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+"WWWWWWWWWWWWWWWWWWWWWWWWWWWWOWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+"W          WWW        GWG       GGG        WWW          W",
+"W          W          GG         GG          W          W",
+"W WWWW     W        W G           G W        W     WWWW W",
+"W WWWW             WW               WW             WWWW W",
+"W                 WW   WW       WW   WW                 W",
+"W                WW    WW       WW    WW                W",
+"W               WW        GGGGG        WW               W",
+"W        WW    WW   W     GGGGG     W   WW    WW        W",
+"W        WW    W    WW    GGGGG    WW    W    WW        W",
+"W                    WW   GGGGG   WW                    W",
+"W                     WW   WGW   WW                     W",
+"WW       W GGG   WW    WW  WGW  WW    WW   GGG W       WW",
+"WWW     WW GGG   WW     W  WGW  W     WW   GGG WW     WWW",
+"W WW   WW                  WGW                  WW   WW W",
+"W  WW WW                                         WW WW  W",
+"W   W W                                           W W   W",
+"WG                                                     GW",
+"WG                                                     GW",
+"W   W W                                                 W",
+"W  WW WW                                                W",
+"W WW   WW                                               W",
+"WWW     WW                                              W",
+"WW       W                                              W",
+"W                                                       W",
+"W                                                       W",
+"W                                                       W",
+"W                                                       W",
+"W                                                       W",
+"W                                                       W",
+"W                                                       W",
+"W                                                       W",
+"W                                                       W",
+"W      W                                        W       W",
+"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
 ]
 
 x = y = 0
@@ -294,8 +323,8 @@ for linha in mapa:
     for coluna in linha:
         if coluna == "W":
             Parede((x, y))
-        x += 16
-    y += 15
+        x += 14
+    y += 17
     x = 0
 
 try:
@@ -326,7 +355,27 @@ try:
                 if event.key == pygame.K_UP:
                     player.cima = True
                     player.speedy = -2   
-                    
+                if event.key == pygame.K_SPACE:
+                    if player.esquerda == True:
+                        bullet = Bullet(player.rect.centerx, player.rect.bottom)
+                        all_sprites.add(bullet)
+                        bullets.add(bullet)
+                        bullet.speedx = -8
+                    elif player.direita == True:
+                        bullet = Bullet(player.rect.centerx, player.rect.bottom)
+                        all_sprites.add(bullet)
+                        bullets.add(bullet)
+                        bullet.speedx = 8
+                    elif player.baixo == True:
+                        bullet = Bullet(player.rect.centerx, player.rect.bottom - 20)
+                        all_sprites.add(bullet)
+                        bullets.add(bullet)
+                        bullet.speedy = 8
+                    elif player.cima == True:
+                        bullet = Bullet(player.rect.centerx, player.rect.top)
+                        all_sprites.add(bullet)
+                        bullets.add(bullet)
+                        bullet.speedy = -8               
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
                     player.esquerda = False
@@ -344,6 +393,7 @@ try:
         all_sprites.update()
             
         screen.fill(BLACK)
+        screen.blit(background, background_rect)
         for parede in paredes:
             pygame.draw.rect(screen, (WHITE), parede.rect)
         all_sprites.draw(screen)
