@@ -9,8 +9,8 @@ from os import path
 img_dir = path.join(path.dirname(__file__), 'img')
 snd_dir = path.join(path.dirname(__file__), 'snd')
 # Dados gerais do jogo.
-WIDTH = 480 # Largura da tela
-HEIGHT = 480 # Altura da tela
+WIDTH = 550 # Largura da tela
+HEIGHT = 340 # Altura da tela
 FPS = 60 # Frames por segundo
 
 # Define algumas variáveis com as cores básicas
@@ -29,7 +29,7 @@ class Player(pygame.sprite.Sprite):
         player_img = pygame.image.load(path.join(img_dir, "spritedragao.png")).convert()
         self.image = player_img
         
-        self.image = pygame.transform.scale(player_img,(50,30))
+        self.image = pygame.transform.scale(player_img,(30,18))
         
         self.image.set_colorkey(WHITE)
         
@@ -66,7 +66,7 @@ class Player2(pygame.sprite.Sprite):
         player_img = pygame.image.load(path.join(img_dir, "dragaoroxo.png")).convert()
         self.image = player_img
         
-        self.image = pygame.transform.scale(player_img,(50,30))
+        self.image = pygame.transform.scale(player_img,(30, 18))
         
         self.image.set_colorkey(WHITE)
         
@@ -103,7 +103,7 @@ class Player3(pygame.sprite.Sprite):
         player_img = pygame.image.load(path.join(img_dir, "dragaoazul.png")).convert()
         self.image = player_img
         
-        self.image = pygame.transform.scale(player_img,(50,30))
+        self.image = pygame.transform.scale(player_img,(30,18))
         
         self.image.set_colorkey(WHITE)
         
@@ -140,7 +140,7 @@ class Player4(pygame.sprite.Sprite):
         player_img = pygame.image.load(path.join(img_dir, "dragaoverde.png")).convert()
         self.image = player_img
         
-        self.image = pygame.transform.scale(player_img,(50,30))
+        self.image = pygame.transform.scale(player_img,(30,18))
         
         self.image.set_colorkey(WHITE)
         
@@ -182,7 +182,7 @@ pygame.display.set_caption("Dragao")
 # Variável para o ajuste de velocidade
 clock = pygame.time.Clock()
 
-background = pygame.image.load(path.join(img_dir, 'batlle field.jpg')).convert()
+background = pygame.image.load(path.join(img_dir, '14-shading.png')).convert()
 background_rect = background.get_rect()
 backgorund_rect = pygame.transform.scale(background,(WIDTH,HEIGHT))
 
