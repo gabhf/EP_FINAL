@@ -261,7 +261,7 @@ pygame.display.set_caption("Dragao")
 # Variável para o ajuste de velocidade
 clock = pygame.time.Clock()
 
-background = pygame.image.load(path.join(img_dir, 'cenario800x600.png')).convert()
+background = pygame.image.load(path.join(img_dir, 'novocenario.png')).convert()
 background_rect = background.get_rect()
 
 player = Player ()
@@ -281,11 +281,11 @@ paredes = []
 
 #cria o mapa
 mapa = [
-"WWWWWWWWWWWWWWWWWWWWWWWWWWWWOWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-"W          WWW        GWG       GGG        WWW          W",
+"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+"W          WWW        GGG       GGG        WWW          W",
 "W          W          GG         GG          W          W",
-"W WWWW     W        W G           G W        W     WWWW W",
-"W WWWW             WW               WW             WWWW W",
+"W WWW      W        W G           G W        W     WWWW W",
+"W WWW              WW               WW             WWWW W",
 "W                 WW   WW       WW   WW                 W",
 "W                WW    WW       WW    WW                W",
 "W               WW        GGGGG        WW               W",
@@ -293,28 +293,28 @@ mapa = [
 "W        WW    W    WW    GGGGG    WW    W    WW        W",
 "W                    WW   GGGGG   WW                    W",
 "W                     WW   WGW   WW                     W",
-"WW       W GGG   WW    WW  WGW  WW    WW   GGG W       WW",
-"WWW     WW GGG   WW     W  WGW  W     WW   GGG WW     WWW",
+"WW       W  GGG  WW    WW  WGW  WW    WW  GGG  W       WW",
+"WWW     WW  GGG  WW     W  WGW  W     WW  GGG  WW     WWW",
 "W WW   WW                  WGW                  WW   WW W",
 "W  WW WW                                         WW WW  W",
-"W   W W                                           W W   W",
-"WG                                                     GW",
-"WG                                                     GW",
-"W   W W                                                 W",
-"W  WW WW                                                W",
-"W WW   WW                                               W",
-"WWW     WW                                              W",
-"WW       W                                              W",
-"W                                                       W",
-"W                                                       W",
-"W                                                       W",
-"W                                                       W",
-"W                                                       W",
-"W                                                       W",
-"W                                                       W",
-"W                                                       W",
-"W                                                       W",
-"W      W                                        W       W",
+"W   W W             W WWW       WWW W             W W   W",
+"WG                  W WWW       WWW W                  GW",
+"WG  W W             W WWW       WWW W             W W  GW",
+"W  WW WW            W               W            WW WW  W",
+"W WW   WW                  WGW                  WW   WW W",
+"WWW     WW  GGG  WW     W  WGW  W     WW  GGG  WW     WWW",
+"WW       W  GGG  WW    WW  WGW  WW    WW  GGG  W       WW",
+"W                     WW   WGW   WW                     W",
+"W                    WW   GGGGG   WW                    W",
+"W        WW    W     WW   GGGGG    WW    W    WW        W",
+"W        WW    WW    W    GGGGG     W   WW    WW        W",
+"W               WW        GGGGG        WW               W",
+"W                WW    WW       WW    WW                W",
+"W                 WW   WW       WW   WW                 W",
+"W WWWW             WW               WW             WWWW W",
+"W WWWW     W        W  G          G W        W     WWWW W",
+"W          W           GG        GG          W          W",
+"W          WWW         GGG      GGG        WWW          W",
 "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
 ]
 
