@@ -24,7 +24,7 @@ class Player(pygame.sprite.Sprite):
         self.speedx = 0
         self.speedy = 0
 
-        self.radius = 25
+        self.radius = 10
         
         self.direita = False
         self.esquerda = False
@@ -59,7 +59,6 @@ class Player(pygame.sprite.Sprite):
         
             self.image.set_colorkey(WHITE)
         
-            
         self.rect.x += self.speedx
         self.rect.y += self.speedy
         
@@ -74,7 +73,6 @@ class Player(pygame.sprite.Sprite):
 
         if self.rect.top < 0:
             self.rect.top = 0
-            
 class Player2(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -95,7 +93,7 @@ class Player2(pygame.sprite.Sprite):
         self.speedx = 0
         self.speedy = 0
 
-        self.radius = 25
+        self.radius = 10
     
         self.direita = False
         self.esquerda = False
@@ -164,7 +162,7 @@ class Player3(pygame.sprite.Sprite):
         self.speedx = 0
         self.speedy = 0
 
-        self.radius = 25
+        self.radius = 10
 
         self.direita = False
         self.esquerda = False
@@ -234,7 +232,7 @@ class Player4(pygame.sprite.Sprite):
         self.speedx = 0
         self.speedy = 0
 
-        self.radius = 25
+        self.radius = 10
 
         self.direita = False
         self.esquerda = False
@@ -297,11 +295,11 @@ class Bullet(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         
         # Carregando a imagem de fundo.
-        bullet_img = pygame.image.load(path.join(img_dir, "fball.png")).convert()
+        bullet_img = pygame.image.load(path.join(img_dir, "sol.png")).convert()
         self.image = bullet_img
-        self.image = pygame.transform.scale(bullet_img,(20, 10))
+        self.image = pygame.transform.scale(bullet_img,(30, 20))
         # Deixando transparente.
-        self.image.set_colorkey(WHITE)
+        self.image.set_colorkey(BLACK)
         
         # Detalhes sobre o posicionamento.
         self.rect = self.image.get_rect()
@@ -322,6 +320,12 @@ class Bullet(pygame.sprite.Sprite):
         self.rect.y += self.speedy
         # Se o tiro passar do inicio da tela, morre.
         if self.rect.bottom < 0:
+            self.kill()
+        elif self.rect.top > HEIGHT:
+            self.kill()
+        elif self.rect.left < 0:
+            self.kill()
+        elif self.rect.right > WIDTH:
             self.kill()
 
 # Inicialização do Pygame.
@@ -447,22 +451,22 @@ def game(screen):
                     player.speedy = -2   
                 if event.key == pygame.K_SPACE:
                     if bullets.esquerda == True:
-                        bullet = Bullet(player.rect.centerx, player.rect.bottom)
+                        bullet = Bullet(player.rect.centerx, player.rect.bottom -5)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedx = -8
                     elif bullets.direita == True:
-                        bullet = Bullet(player.rect.centerx, player.rect.bottom)
+                        bullet = Bullet(player.rect.centerx, player.rect.bottom -5)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedx = 8
                     elif bullets.baixo == True:
-                        bullet = Bullet(player.rect.centerx, player.rect.top - 20)
+                        bullet = Bullet(player.rect.centerx, player.rect.top + 20)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedy = 8
                     elif bullets.cima == True:
-                        bullet = Bullet(player.rect.centerx, player.rect.top)
+                        bullet = Bullet(player.rect.centerx, player.rect.top +10)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedy = -8               
@@ -483,9 +487,9 @@ def game(screen):
         all_sprites.update()
             
         screen.fill(BLACK)
-        screen.blit(background, background_rect)
         for parede in paredes:
             pygame.draw.rect(screen, (WHITE), parede.rect)
+        screen.blit(background, background_rect)
         all_sprites.draw(screen)
         
         # Depois de desenhar tudo, inverte o display.
