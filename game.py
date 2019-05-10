@@ -12,7 +12,7 @@ class Player(pygame.sprite.Sprite):
 
         self.image = player_img
         
-        self.image = pygame.transform.scale(player_img,(40,30))
+        self.image = pygame.transform.scale(player_img,(30,30))
         
         self.image.set_colorkey(WHITE)
         
@@ -35,27 +35,27 @@ class Player(pygame.sprite.Sprite):
         if self.direita:
             player_img = pygame.image.load(path.join(img_dir, "dragaovermelhor.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(40,30))
+            self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
             
         elif self.esquerda:
             player_img = pygame.image.load(path.join(img_dir, "dragaovermelhol.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(40,30))
+            self.image = pygame.transform.scale(player_img,(30,30))
             
             self.image.set_colorkey(WHITE)
         
         elif self.baixo:
             player_img = pygame.image.load(path.join(img_dir, "dragaovermelhod.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(40,30))
+            self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
         elif self.cima:
             player_img = pygame.image.load(path.join(img_dir, "dragaovermelhou.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(40,30))
+            self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
         
@@ -81,7 +81,7 @@ class Player2(pygame.sprite.Sprite):
 
         self.image = player_img
         
-        self.image = pygame.transform.scale(player_img,(40, 30))
+        self.image = pygame.transform.scale(player_img,(30,30))
         
         self.image.set_colorkey(WHITE)
         
@@ -104,27 +104,27 @@ class Player2(pygame.sprite.Sprite):
         if self.direita:
             player_img = pygame.image.load(path.join(img_dir, "dragaoroxor.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(40,30))
+            self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
             
         elif self.esquerda:
             player_img = pygame.image.load(path.join(img_dir, "dragaoroxol.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(40,30))
+            self.image = pygame.transform.scale(player_img,(30,30))
             
             self.image.set_colorkey(WHITE)
         
         elif self.baixo:
             player_img = pygame.image.load(path.join(img_dir, "dragaoroxod.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(40,30))
+            self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
         elif self.cima:
             player_img = pygame.image.load(path.join(img_dir, "dragaoroxou.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(40,30))
+            self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
             
@@ -150,7 +150,7 @@ class Player3(pygame.sprite.Sprite):
         player_img = pygame.image.load(path.join(img_dir, "dragaoazull.png")).convert()
         self.image = player_img
         
-        self.image = pygame.transform.scale(player_img,(40,30))
+        self.image = pygame.transform.scale(player_img,(30,30))
         
         self.image.set_colorkey(WHITE)
         
@@ -173,27 +173,27 @@ class Player3(pygame.sprite.Sprite):
         if self.direita:
             player_img = pygame.image.load(path.join(img_dir, "dragaoazulr.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(40,30))
+            self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
             
         elif self.esquerda:
             player_img = pygame.image.load(path.join(img_dir, "dragaoazull.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(40,30))
+            self.image = pygame.transform.scale(player_img,(30,30))
             
             self.image.set_colorkey(WHITE)
         
         elif self.baixo:
             player_img = pygame.image.load(path.join(img_dir, "dragaoazuld.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(40,30))
+            self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
         elif self.cima:
             player_img = pygame.image.load(path.join(img_dir, "dragaoazulu.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(40,30))
+            self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
 
@@ -220,7 +220,7 @@ class Player4(pygame.sprite.Sprite):
 
         self.image = player_img
         
-        self.image = pygame.transform.scale(player_img,(40,30))
+        self.image = pygame.transform.scale(player_img,(30,30))
         
         self.image.set_colorkey(WHITE)
         
@@ -243,27 +243,27 @@ class Player4(pygame.sprite.Sprite):
         if self.direita:
             player_img = pygame.image.load(path.join(img_dir, "dragaoverder.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(40,30))
+            self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
             
         elif self.esquerda:
             player_img = pygame.image.load(path.join(img_dir, "dragaoverdel.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(40,30))
+            self.image = pygame.transform.scale(player_img,(30,30))
             
             self.image.set_colorkey(WHITE)
         
         elif self.baixo:
             player_img = pygame.image.load(path.join(img_dir, "dragaoverded.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(40,30))
+            self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
         elif self.cima:
             player_img = pygame.image.load(path.join(img_dir, "dragaoverdeu.png")).convert()
             self.image = player_img
-            self.image = pygame.transform.scale(player_img,(40,30))
+            self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
 
@@ -285,7 +285,7 @@ class Player4(pygame.sprite.Sprite):
 class Parede(object):
     def __init__(self, pos):
         paredes.append(self)
-        self.rect = pygame.Rect(pos[0], pos[1], 24,25 )
+        self.rect = pygame.Rect(pos[0], pos[1], 25,25 )
 #cria o projétil do dragão
 class Bullet(pygame.sprite.Sprite):
     # Construtor da classe.
@@ -357,30 +357,30 @@ paredes = []
 
 #cria o mapa
 mapa = [
-"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-"WGGGGGG                        W",
-"WGWWWGG                        W",
-"WGWWWGG                        W",
-"WGWWWGG                WWW     W",
-"WGGGGGG                WWW     W",
-"W        WWW      WWW  WWW     W",
-"W        WWW      WWW          W",
-"W        WWW      WWW          W",
-"W                              W",
-"W                              W",
-"W      WWW                     W",
-"W      WWW                     W",
-"W      WWW                     W",
-"W                              W",
-"W                              W",
-"W                              W",
-"W                              W",
-"W                              W",
-"W  W                           W",
-"W  W WWW                       W",
-"W  W WWW                       W",
-"W  W WWW                       W",
-"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+"WGGGGGG                     W   W",
+"WGWWWGG           W         W   W",
+"WGWWWGG           W         WW  W",
+"WGWWWGG           W    WWW   W  W",
+"WGGGGGG                WWW      W",
+"W        WWW      WWW  WWW      W",
+"W        WWW      WWW        WWWW",
+"W        WWW      WWW        WWWW",
+"W                            WWWW",
+"W                               W",
+"W      WWW          WW  W       W",
+"W      WWW              W   WWW W",
+"WWWW   WWW           WWWW   WWW W",
+"WWWW                            W",
+"WWWW                            W",
+"W       W               W  W    W",
+"W       W       WWWWWWWW        W",
+"W       W                       W",
+"W  W    W                       W",
+"W  WWWWWW                       W",
+"W  WWWWWW                       W",
+"W  WWWWWW                       W",
+"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
 ]
 
 x = y = 0
@@ -388,7 +388,7 @@ for linha in mapa:
     for coluna in linha:
         if coluna == "W":
             Parede((x, y))
-        x += 24
+        x += 24.5
     y += 25
     x = 0
 
@@ -443,22 +443,22 @@ def game(screen):
                         bullet = Bullet(player.rect.centerx, player.rect.bottom -5)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
-                        bullet.speedx = -6
+                        bullet.speedx = -4
                     elif bullets.direita == True:
                         bullet = Bullet(player.rect.centerx, player.rect.bottom -5)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
-                        bullet.speedx = 6
+                        bullet.speedx = 4
                     elif bullets.baixo == True:
                         bullet = Bullet(player.rect.centerx, player.rect.top + 20)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
-                        bullet.speedy = 6
+                        bullet.speedy = 4
                     elif bullets.cima == True:
                         bullet = Bullet(player.rect.centerx, player.rect.top +10)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
-                        bullet.speedy = -6               
+                        bullet.speedy = -4               
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
                     player.esquerda = False
