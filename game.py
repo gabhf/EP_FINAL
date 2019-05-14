@@ -18,7 +18,7 @@ class Player(pygame.sprite.Sprite):
         
         self.rect = self.image.get_rect()
         
-        self.rect.centerx = 20
+        self.rect.centerx = 30
         self.rect.bottom = HEIGHT - 40
         
         self.speedx = 0
@@ -87,7 +87,7 @@ class Player2(pygame.sprite.Sprite):
         
         self.rect = self.image.get_rect()
         
-        self.rect.centerx = 20
+        self.rect.centerx = 30
         self.rect.bottom = HEIGHT - 90
         
         self.speedx = 0
@@ -156,8 +156,8 @@ class Player3(pygame.sprite.Sprite):
         
         self.rect = self.image.get_rect()
         
-        self.rect.centerx = WIDTH - 20
-        self.rect.bottom = 40
+        self.rect.centerx = WIDTH - 30
+        self.rect.bottom = 60
         
         self.speedx = 0
         self.speedy = 0
@@ -226,7 +226,7 @@ class Player4(pygame.sprite.Sprite):
         
         self.rect = self.image.get_rect()
         
-        self.rect.centerx = WIDTH - 20
+        self.rect.centerx = WIDTH - 30
         self.rect.bottom = 100
         
         self.speedx = 0
@@ -282,10 +282,23 @@ class Player4(pygame.sprite.Sprite):
         if self.rect.top < 0:
             self.rect.top = 0
 #cria classe de parede
-class Parede(object):
+class Parede(pygame.sprite.Sprite):
+    # Construtor da classe.
     def __init__(self, pos):
-        paredes.append(self)
-        self.rect = pygame.Rect(pos[0], pos[1], 25,25 )
+        
+        # Construtor da classe pai (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+        
+        # Carregando a imagem de fundo.
+        parede_img = pygame.image.load(path.join(img_dir, "bloco.jpg")).convert()
+        self.image = parede_img
+        self.image = pygame.transform.scale(parede_img,(30, 30))
+        # Deixando transparente.
+        self.image.set_colorkey(BLACK)
+        
+        # Detalhes sobre o posicionamento.
+        self.rect = self.image.get_rect()
+        
 #cria o projétil do dragão
 class Bullet(pygame.sprite.Sprite):
     # Construtor da classe.
@@ -382,12 +395,12 @@ mapa = [
 "W  WWWWWW        W              W",
 "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
 ]
-
+paredes = pygame.sprite.Group()
 x = y = 0
 for linha in mapa:
     for coluna in linha:
         if coluna == "W":
-            Parede((x, y))
+            paredes.add(Parede((x, y)))
         x += 24.5
     y += 25
     x = 0
@@ -477,8 +490,6 @@ def game(screen):
             
         screen.fill(BLACK)
         screen.blit(background, background_rect)
-        for parede in paredes:
-            pygame.draw.rect(screen, (WHITE), parede.rect)
         all_sprites.draw(screen)
         
         # Depois de desenhar tudo, inverte o display.
