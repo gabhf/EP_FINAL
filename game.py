@@ -4,6 +4,25 @@ from os import path
 
 from config import *
 
+class OvoVermelho(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+    
+        OVO_img = pygame.image.load(path.join(img_dir, "OVOA.png")).convert()
+
+        self.image = OVO_img
+        
+        self.image = pygame.transform.scale(OVO_img,(25,30))
+        
+        self.image.set_colorkey(WHITE)
+        
+        self.rect = self.image.get_rect()
+        
+        self.rect.centerx = 60
+        self.rect.bottom = HEIGHT - 50
+        
+        
+
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -281,6 +300,41 @@ class Player4(pygame.sprite.Sprite):
 
         if self.rect.top < 0:
             self.rect.top = 0
+
+class OvoVermelho(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+    
+        OVO_img = pygame.image.load(path.join(img_dir, "OVOV.png")).convert()
+
+        self.image = OVO_img
+        
+        self.image = pygame.transform.scale(OVO_img,(25,30))
+        
+        self.image.set_colorkey(WHITE)
+        
+        self.rect = self.image.get_rect()
+        
+        self.rect.centerx = 60
+        self.rect.bottom = HEIGHT - 50
+
+class OvoAzul(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+    
+        OVOA_img = pygame.image.load(path.join(img_dir, "OVOA.png")).convert()
+
+        self.image = OVOA_img
+        
+        self.image = pygame.transform.scale(OVOA_img,(25,30))
+        
+        self.image.set_colorkey(WHITE)
+        
+        self.rect = self.image.get_rect()
+        
+        self.rect.centerx = WIDTH - 60
+        self.rect.bottom = 70
+        
 #cria classe de parede
 class Parede(pygame.sprite.Sprite):
     # Construtor da classe.
@@ -351,19 +405,22 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 # Variável para o ajuste de velocidade
 clock = pygame.time.Clock()
 
-
-
+ovo_azul = OvoAzul()
+ovo_vermelho = OvoVermelho()
 player = Player ()
 player2= Player2()
 player3= Player3()
 player4= Player4()
 
+
 all_sprites = pygame.sprite.Group()
+
 all_sprites.add(player)
 all_sprites.add(player2)
 all_sprites.add(player3)
 all_sprites.add(player4)
-
+all_sprites.add(ovo_azul)
+all_sprites.add(ovo_vermelho)
 bullets = pygame.sprite.Group()
 #cria a lista de paredes
 paredes = []
