@@ -301,6 +301,36 @@ class Player4(pygame.sprite.Sprite):
         if self.rect.top < 0:
             self.rect.top = 0
 
+class ninhoV(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+    
+        ninho_img = pygame.image.load(path.join(img_dir, "ninho.png")).convert()
+
+        self.image = ninho_img
+        
+        self.image.set_colorkey(WHITE)
+        
+        self.rect = self.image.get_rect()
+        
+        self.rect.centerx = 85
+        self.rect.bottom = HEIGHT - 30
+        
+class ninhoA(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+    
+        ninho_img = pygame.image.load(path.join(img_dir, "ninho.png")).convert()
+
+        self.image = ninho_img
+        
+        self.image.set_colorkey(WHITE)
+        
+        self.rect = self.image.get_rect()
+        
+        self.rect.centerx = WIDTH - 85
+        self.rect.bottom = 130
+
 class OvoVermelho(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -309,14 +339,14 @@ class OvoVermelho(pygame.sprite.Sprite):
 
         self.image = OVO_img
         
-        self.image = pygame.transform.scale(OVO_img,(25,30))
+        self.image = pygame.transform.scale(OVO_img,(35,40))
         
         self.image.set_colorkey(WHITE)
         
         self.rect = self.image.get_rect()
         
-        self.rect.centerx = 60
-        self.rect.bottom = HEIGHT - 50
+        self.rect.centerx = 80
+        self.rect.bottom = HEIGHT - 60
 
 class OvoAzul(pygame.sprite.Sprite):
     def __init__(self):
@@ -326,14 +356,14 @@ class OvoAzul(pygame.sprite.Sprite):
 
         self.image = OVOA_img
         
-        self.image = pygame.transform.scale(OVOA_img,(25,30))
+        self.image = pygame.transform.scale(OVOA_img,(25,35))
         
         self.image.set_colorkey(WHITE)
         
         self.rect = self.image.get_rect()
         
-        self.rect.centerx = WIDTH - 60
-        self.rect.bottom = 70
+        self.rect.centerx = WIDTH - 100
+        self.rect.bottom = 90
         
 #cria classe de parede
 class Parede(pygame.sprite.Sprite):
@@ -426,6 +456,8 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 # Variável para o ajuste de velocidade
 clock = pygame.time.Clock()
 
+ninho_azul = ninhoA()
+ninho_vermelho = ninhoV()
 ovo_azul = OvoAzul()
 ovo_vermelho = OvoVermelho()
 player = Player ()
@@ -436,6 +468,8 @@ player4= Player4()
 
 all_sprites = pygame.sprite.Group()
 
+all_sprites.add(ninho_azul)
+all_sprites.add(ninho_vermelho)
 all_sprites.add(player)
 all_sprites.add(player2)
 all_sprites.add(player3)
