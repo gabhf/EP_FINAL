@@ -37,7 +37,7 @@ class Player(pygame.sprite.Sprite):
         
         self.rect = self.image.get_rect()
         
-        self.rect.centerx = 30
+        self.rect.centerx = 40
         self.rect.bottom = HEIGHT - 40
         
         self.speedx = 0
@@ -346,13 +346,34 @@ class Parede(pygame.sprite.Sprite):
         # Carregando a imagem de fundo.
         parede_img = pygame.image.load(path.join(img_dir, "bloco.jpg")).convert()
         self.image = parede_img
-        self.image = pygame.transform.scale(parede_img,(30, 30))
+        self.image = pygame.transform.scale(parede_img,(25, 25))
+        # Deixando transparente.
+        self.image.set_colorkey(WHITE)
+        
+        # Detalhes sobre o posicionamento.
+        self.rect = self.image.get_rect()
+        self.rect.x = pos[0]
+        self.rect.y = pos[1]
+# criando graminha
+class Grama(pygame.sprite.Sprite):
+    # Construtor da classe.
+    def __init__(self, pos):
+        
+        # Construtor da classe pai (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+        
+        # Carregando a imagem de fundo.
+        grama_img = pygame.image.load(path.join(img_dir, "grama.png")).convert()
+        self.image = grama_img
+        self.image = pygame.transform.scale(grama_img,(25, 25))
         # Deixando transparente.
         self.image.set_colorkey(BLACK)
         
         # Detalhes sobre o posicionamento.
         self.rect = self.image.get_rect()
-        
+        self.rect.x = pos[0]
+        self.rect.y = pos[1]
+
 #cria o projétil do dragão
 class Bullet(pygame.sprite.Sprite):
     # Construtor da classe.
@@ -424,41 +445,45 @@ all_sprites.add(ovo_vermelho)
 bullets = pygame.sprite.Group()
 #cria a lista de paredes
 paredes = []
+grama = []
 
 #cria o mapa
 mapa = [
 "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-"WGGGGGG                     W   W",
-"WGWWWGG           W         W   W",
-"WGWWWGG           W         WW  W",
-"WGWWWGG           W    WWW   W  W",
-"WGGGGGG                WWW      W",
-"W        WWW      WWW  WWW      W",
-"W        WWW      WWW        WWWW",
-"W        WWW      WWW        WWWW",
+"WGGGGGG                         W",
+"WGWW  G                         W",
+"WGWW  G          WW             W",
+"WGWW  G                WW       W",
+"WG G G G               WW       W",
+"W                 WW   WW       W",
+"W        WW       WW            W",
+"W        WWW                 WWWW",
 "W                            WWWW",
-"W                  WWW  W       W",
-"W      WWW              W       W",
-"W      WWW              W   WWW W",
-"WWWW   WWW          WWWWW   WWW W",
-"WWWW            WW  WW          W",
-"WWWW           W    WW    W     W",
-"W       W      W       W        W",
-"W       W      WWWWWWWW         W",
+"W                  WWW          W",
+"W        W                      W",
+"W        W                  W   W",
+"W  WWW   W          WWWWW   W   W",
+"W  WWW              W           W",
+"W                   W     W     W",
 "W       W                       W",
-"W  W    W                 WWW   W",
-"W  WWWWWW        W        WWW   W",
-"W  WWWWWW        W        WWW   W",
-"W  WWWWWW        W              W",
+"W       W                       W",
+"W       W           WWW         W",
+"W   W    W                      W",
+"W                W              W",
+"W                W              W",
+"W                W              W",
 "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
 ]
 paredes = pygame.sprite.Group()
+grama = pygame.sprite.Group()
 x = y = 0
 for linha in mapa:
     for coluna in linha:
         if coluna == "W":
             paredes.add(Parede((x, y)))
-        x += 24.5
+        elif coluna == "G":
+            grama.add(Grama((x,y)))
+        x += 25
     y += 25
     x = 0
 
@@ -528,6 +553,55 @@ def game(screen):
                         bullet = Bullet(player.rect.centerx, player.rect.top +10)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
+                        bullet.speedy = -4
+                if event.key == pygame.K_a:
+                    player3.esquerda = True
+                    bullets.cima = False
+                    bullets.baixo = False
+                    bullets.esquerda= True
+                    bullets.direita = False
+                    player3.speedx = -2
+                if event.key == pygame.K_d:
+                    player3.direita = True
+                    bullets.cima = False
+                    bullets.baixo = False
+                    bullets.esquerda= False
+                    bullets.direita = True
+                    player3.speedx = 2
+                if event.key == pygame.K_s:
+                    player3.baixo = True
+                    bullets.cima = False
+                    bullets.baixo = True
+                    bullets.esquerda= False
+                    bullets.direita = False
+                    player3.speedy = 2
+                if event.key == pygame.K_w:
+                    player3.cima = True
+                    bullets.cima = True
+                    bullets.baixo = False
+                    bullets.esquerda= False
+                    bullets.direita = False
+                    player3.speedy = -2   
+                if event.key == pygame.K_q:
+                    if bullets.esquerda == True:
+                        bullet = Bullet(player3.rect.centerx, player3.rect.bottom -5)
+                        all_sprites.add(bullet)
+                        bullets.add(bullet)
+                        bullet.speedx = -4
+                    elif bullets.direita == True:
+                        bullet = Bullet(player3.rect.centerx, player3.rect.bottom -5)
+                        all_sprites.add(bullet)
+                        bullets.add(bullet)
+                        bullet.speedx = 4
+                    elif bullets.baixo == True:
+                        bullet = Bullet(player3.rect.centerx, player3.rect.top + 20)
+                        all_sprites.add(bullet)
+                        bullets.add(bullet)
+                        bullet.speedy = 4
+                    elif bullets.cima == True:
+                        bullet = Bullet(player3.rect.centerx, player3.rect.top +10)
+                        all_sprites.add(bullet)
+                        bullets.add(bullet)
                         bullet.speedy = -4               
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
@@ -542,12 +616,34 @@ def game(screen):
                 if event.key == pygame.K_DOWN:
                     player.baixo = False
                     player.speedy = 0
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_a:
+                    player3.esquerda = False
+                    player3.speedx = 0
+                if event.key == pygame.K_d:
+                    player3.direita = False
+                    player3.speedx = 0
+                if event.key == pygame.K_w:
+                    player3.cima = False
+                    player.speedy = 0
+                if event.key == pygame.K_s:
+                    player3.baixo = False
+                    player3.speedy = 0
                                       
         all_sprites.update()
-            
+
+        hits = pygame.sprite.spritecollide(player, paredes, False, pygame.sprite.collide_circle)
+        if hits:
+            player.speedx = 0
+            player.speedy = 0
+        hits = pygame.sprite.groupcollide(paredes, bullets, False, True)
+        hits = pygame.sprite.groupcollide(grama, bullets, True, True)
+
         screen.fill(BLACK)
         screen.blit(background, background_rect)
         all_sprites.draw(screen)
+        paredes.draw(screen)
+        grama.draw(screen)
         
         # Depois de desenhar tudo, inverte o display.
         pygame.display.flip()
