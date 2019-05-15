@@ -25,6 +25,9 @@ class OvoVermelho(pygame.sprite.Sprite):
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
+        
+        vida = 2
+        self.vida = vida
         pygame.sprite.Sprite.__init__(self)
     
         player_img = pygame.image.load(path.join(img_dir, "dragaovermelhor.png")).convert()
@@ -94,6 +97,10 @@ class Player(pygame.sprite.Sprite):
             self.rect.top = 0
 class Player2(pygame.sprite.Sprite):
     def __init__(self):
+        
+        vida = 2
+        self.vida = vida
+        
         pygame.sprite.Sprite.__init__(self)
         
         player_img = pygame.image.load(path.join(img_dir, "dragaoroxor.png")).convert()
@@ -164,6 +171,9 @@ class Player2(pygame.sprite.Sprite):
 
 class Player3(pygame.sprite.Sprite):
     def __init__(self):
+        
+        vida = 2
+        self.vida = vida
         pygame.sprite.Sprite.__init__(self)
         
         player_img = pygame.image.load(path.join(img_dir, "dragaoazull.png")).convert()
@@ -233,6 +243,10 @@ class Player3(pygame.sprite.Sprite):
 
 class Player4(pygame.sprite.Sprite):
     def __init__(self):
+        
+        vida = 2
+        self.vida = vida
+        
         pygame.sprite.Sprite.__init__(self)
         
         player_img = pygame.image.load(path.join(img_dir, "dragaoverdel.png")).convert()
@@ -522,7 +536,7 @@ for linha in mapa:
     x = 0
 
 def game(screen):
-    background = pygame.image.load(path.join(img_dir, 'Cenario top.png')).convert()
+    background = pygame.image.load(path.join(img_dir, 'Ultimocenario(espero).png')).convert()
     background_rect = background.get_rect()
     
     running = True
@@ -665,13 +679,43 @@ def game(screen):
                     player3.speedy = 0
                                       
         all_sprites.update()
-
+        
+        hitsp1 = pygame.sprite.spritecollide(player, Bullet, False, pygame.sprite.collide_circle)
+        if hitsp1:
+            player.self.vida -= 1
+            if player.self.vida == 0:
+                player.self.rect.centerx = WIDTH - 30
+                player.self.rect.bottom = 100
+        
+        hitsp2 = pygame.sprite.spritecollide(player2, Bullet, False, pygame.sprite.collide_circle)
+        if hitsp2:
+            player2.self.vida -= 1
+            if player2.self.vida == 0:
+                player2.self.rect.centerx = WIDTH - 30
+                player2.self.rect.bottom = 100
+        
+        hitsp3 = pygame.sprite.spritecollide(player3, Bullet, False, pygame.sprite.collide_circle)
+        if hitsp3:
+            player3.self.vida -= 1
+            if player3.self.vida == 0:
+                player3.self.rect.centerx = WIDTH - 30
+                player3.self.rect.bottom = 100
+        
+        hitsp4 = pygame.sprite.spritecollide(player4, Bullet, False, pygame.sprite.collide_circle)
+        if hitsp4:
+            player4.self.vida -= 1
+            if player4.self.vida == 0:
+                player4.self.rect.centerx = WIDTH - 30
+                player4.self.rect.bottom = 100
+                
+        
         hits = pygame.sprite.spritecollide(player, paredes, False, pygame.sprite.collide_circle)
         if hits:
             player.speedx = 0
             player.speedy = 0
         hits = pygame.sprite.groupcollide(paredes, bullets, False, True)
         hits = pygame.sprite.groupcollide(grama, bullets, True, True)
+        
 
         screen.fill(BLACK)
         screen.blit(background, background_rect)
