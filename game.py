@@ -167,7 +167,7 @@ class Player3(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         
         self.rect.centerx = WIDTH - 40
-        self.rect.bottom = 40
+        self.rect.bottom = 50
         
         self.speedx = 0
         self.speedy = 0
@@ -511,13 +511,13 @@ mapa = [
 "W        W   G                  W",
 "W        W                  W   W",
 "W  WWW   W          WWWWW   W   W",
-"W  WWW              W           W",
-"W                   W     W     W",
-"W       W                       W",
-"W       W                       W",
-"W       W           WWW         W",
-"W   W    W                      W",
-"W                W              W",
+"W  WWW              WGGGG       W",
+"W       G           WG    W     W",
+"W      GWG                      W",
+"W      GWG                      W",
+"W       WGG         WWW         W",
+"W   W    WG                     W",
+"W        GG      W              W",
 "W                W              W",
 "W                W              W",
 "W                W              W",
@@ -681,7 +681,35 @@ def game(screen):
                                       
         all_sprites.update()
 
+
+        hitsp1 = pygame.sprite.spritecollide(player1, bullets, False, pygame.sprite.collide_circle)
+        if hitsp1:
+            player1.vida -= 1
+            if player1.vida == 0:
+                player1.rect.centerx = 40
+                player1.rect.bottom = HEIGHT - 40
         
+        hitsp2 = pygame.sprite.spritecollide(player2, bullets, False, pygame.sprite.collide_circle)
+        if hitsp2:
+            player2.vida -= 1
+            if player2.vida == 0:
+                player2.rect.centerx = 40
+                player2.rect.bottom = HEIGHT - 80
+        
+        hitsp3 = pygame.sprite.spritecollide(player3, bullets, False, pygame.sprite.collide_circle)
+        if hitsp3:
+            player3.vida -= 1
+            if player3.vida == 0:
+                player3.rect.centerx = WIDTH - 40
+                player3.rect.bottom = 50
+        
+        hitsp4 = pygame.sprite.spritecollide(player4, bullets, False, pygame.sprite.collide_circle)
+        if hitsp4:
+            player4.vida -= 1
+            if player4.vida == 0:
+                player4.rect.centerx = WIDTH - 40
+                player4.rect.bottom = 80
+
 
         hits = pygame.sprite.spritecollide(player1, paredes, False, pygame.sprite.collide_circle)
         if hits:
