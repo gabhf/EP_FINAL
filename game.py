@@ -30,6 +30,9 @@ class OvoVermelho(pygame.sprite.Sprite):
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
+        
+        vida = 2
+        self.vida = vida
         pygame.sprite.Sprite.__init__(self)
     
         player_img = pygame.image.load(path.join(img_dir, "dragaovermelhor.png")).convert()
@@ -99,6 +102,10 @@ class Player(pygame.sprite.Sprite):
             self.rect.top = 0
 class Player2(pygame.sprite.Sprite):
     def __init__(self):
+        
+        vida = 2
+        self.vida = vida
+        
         pygame.sprite.Sprite.__init__(self)
         
         player_img = pygame.image.load(path.join(img_dir, "dragaoroxor.png")).convert()
@@ -169,6 +176,9 @@ class Player2(pygame.sprite.Sprite):
 
 class Player3(pygame.sprite.Sprite):
     def __init__(self):
+        
+        vida = 2
+        self.vida = vida
         pygame.sprite.Sprite.__init__(self)
         
         player_img = pygame.image.load(path.join(img_dir, "dragaoazull2.png")).convert()
@@ -238,6 +248,10 @@ class Player3(pygame.sprite.Sprite):
 
 class Player4(pygame.sprite.Sprite):
     def __init__(self):
+        
+        vida = 2
+        self.vida = vida
+        
         pygame.sprite.Sprite.__init__(self)
         
         player_img = pygame.image.load(path.join(img_dir, "dragaoverdel.png")).convert()
@@ -356,9 +370,13 @@ class OvoVermelho(pygame.sprite.Sprite):
         self.speedx = 0
         self.speedy = 0
         
+        self.speedx = 0
+        self.speedy = 0
+        
     def update(self):
         self.rect.x += self.speedx
         self.rect.y += self.speedy
+         
 
 class OvoAzul(pygame.sprite.Sprite):
     def __init__(self):
@@ -377,6 +395,14 @@ class OvoAzul(pygame.sprite.Sprite):
         self.rect.centerx = WIDTH - 100
         self.rect.bottom = 90
         
+        self.speedx = 0
+        self.speedy = 0
+        
+    def update(self):
+        self.rect.x += self.speedx
+        self.rect.y += self.speedy
+    
+   
 #cria classe de parede
 class Parede(pygame.sprite.Sprite):
     # Construtor da classe.
@@ -535,7 +561,7 @@ for linha in mapa:
     x = 0
 
 def game(screen):
-    background = pygame.image.load(path.join(img_dir, 'Cenario top.png')).convert()
+    background = pygame.image.load(path.join(img_dir, 'Ultimocenario(espero).png')).convert()
     background_rect = background.get_rect()
     
     running = True
@@ -679,6 +705,8 @@ def game(screen):
                                       
         all_sprites.update()
 
+        
+
         hits = pygame.sprite.spritecollide(player1, paredes, False, pygame.sprite.collide_circle)
         if hits:
             player1.speedx = 0
@@ -692,13 +720,22 @@ def game(screen):
         if hits:
             player3.speedx = 0
             player3.speedy = 0
+        
         hits = pygame.sprite.spritecollide(player4, paredes, False, pygame.sprite.collide_circle)
         if hits:
             player4.speedx = 0
             player4.speedy = 0
 
+        hits = pygame.sprite.spritecollide(player1, OvoAzul , False, pygame.sprite.collide_circle)
+        if hits:
+            ovo_azul.speedx = player1.speedx
+            ovo_azul.speedy = player1.speedy
+        
+        
         hits = pygame.sprite.groupcollide(paredes, bullets, False, True)
-        hits = pygame.sprite.groupcollide(grama, bullets, True, True)  
+
+        hits = pygame.sprite.groupcollide(grama, bullets, True, True)
+        
 
 
         screen.fill(BLACK)
