@@ -21,10 +21,15 @@ class OvoVermelho(pygame.sprite.Sprite):
         self.rect.centerx = 60
         self.rect.bottom = HEIGHT - 50
         
-        
+    def update(self):
+        self.rect.x += self.speedx
+        self.rect.y += self.speedy
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
+        
+        vida = 2
+        self.vida = vida
         pygame.sprite.Sprite.__init__(self)
     
         player_img = pygame.image.load(path.join(img_dir, "dragaovermelhor.png")).convert()
@@ -94,6 +99,10 @@ class Player(pygame.sprite.Sprite):
             self.rect.top = 0
 class Player2(pygame.sprite.Sprite):
     def __init__(self):
+        
+        vida = 2
+        self.vida = vida
+        
         pygame.sprite.Sprite.__init__(self)
         
         player_img = pygame.image.load(path.join(img_dir, "dragaoroxor.png")).convert()
@@ -106,8 +115,8 @@ class Player2(pygame.sprite.Sprite):
         
         self.rect = self.image.get_rect()
         
-        self.rect.centerx = 30
-        self.rect.bottom = HEIGHT - 90
+        self.rect.centerx = 40
+        self.rect.bottom = HEIGHT - 80
         
         self.speedx = 0
         self.speedy = 0
@@ -164,6 +173,9 @@ class Player2(pygame.sprite.Sprite):
 
 class Player3(pygame.sprite.Sprite):
     def __init__(self):
+        
+        vida = 2
+        self.vida = vida
         pygame.sprite.Sprite.__init__(self)
         
         player_img = pygame.image.load(path.join(img_dir, "dragaoazull2.png")).convert()
@@ -175,8 +187,8 @@ class Player3(pygame.sprite.Sprite):
         
         self.rect = self.image.get_rect()
         
-        self.rect.centerx = WIDTH - 30
-        self.rect.bottom = 60
+        self.rect.centerx = WIDTH - 40
+        self.rect.bottom = 40
         
         self.speedx = 0
         self.speedy = 0
@@ -233,6 +245,10 @@ class Player3(pygame.sprite.Sprite):
 
 class Player4(pygame.sprite.Sprite):
     def __init__(self):
+        
+        vida = 2
+        self.vida = vida
+        
         pygame.sprite.Sprite.__init__(self)
         
         player_img = pygame.image.load(path.join(img_dir, "dragaoverdel.png")).convert()
@@ -245,8 +261,8 @@ class Player4(pygame.sprite.Sprite):
         
         self.rect = self.image.get_rect()
         
-        self.rect.centerx = WIDTH - 30
-        self.rect.bottom = 100
+        self.rect.centerx = WIDTH - 40
+        self.rect.bottom = 80
         
         self.speedx = 0
         self.speedy = 0
@@ -347,6 +363,10 @@ class OvoVermelho(pygame.sprite.Sprite):
         
         self.rect.centerx = 80
         self.rect.bottom = HEIGHT - 60
+        
+    def update(self):
+        self.rect.x += self.speedx
+        self.rect.y += self.speedy
 
 class OvoAzul(pygame.sprite.Sprite):
     def __init__(self):
@@ -395,7 +415,7 @@ class Grama(pygame.sprite.Sprite):
         # Carregando a imagem de fundo.
         grama_img = pygame.image.load(path.join(img_dir, "grama.png")).convert()
         self.image = grama_img
-        self.image = pygame.transform.scale(grama_img,(25, 25))
+        self.image = pygame.transform.scale(grama_img,(25, 26))
         # Deixando transparente.
         self.image.set_colorkey(BLACK)
         
@@ -460,7 +480,7 @@ ninho_azul = ninhoA()
 ninho_vermelho = ninhoV()
 ovo_azul = OvoAzul()
 ovo_vermelho = OvoVermelho()
-player = Player ()
+player1= Player ()
 player2= Player2()
 player3= Player3()
 player4= Player4()
@@ -470,7 +490,7 @@ all_sprites = pygame.sprite.Group()
 
 all_sprites.add(ninho_azul)
 all_sprites.add(ninho_vermelho)
-all_sprites.add(player)
+all_sprites.add(player1)
 all_sprites.add(player2)
 all_sprites.add(player3)
 all_sprites.add(player4)
@@ -484,11 +504,11 @@ grama = []
 #cria o mapa
 mapa = [
 "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-"WGGGGGG                         W",
-"WGWW  G                         W",
-"WGWW  G          WW             W",
-"WGWW  G                WW       W",
-"WG G G G               WW       W",
+"WGGGGGGG        GGGGG           W",
+"WGGWWGGG        GGGGG           W",
+"WGGWWGGG        GWWGG           W",
+"WGGWWGGG        GGGGG  WW       W",
+"W                      WW       W",
 "W                 WW   WW       W",
 "W        WW       WW            W",
 "W        WWW                 WWWW",
@@ -506,11 +526,12 @@ mapa = [
 "W                W              W",
 "W                W              W",
 "W                W              W",
+"W                W              W",
 "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
 ]
 paredes = pygame.sprite.Group()
 grama = pygame.sprite.Group()
-x = y = 0
+x = y = -10
 for linha in mapa:
     for coluna in linha:
         if coluna == "W":
@@ -522,7 +543,7 @@ for linha in mapa:
     x = 0
 
 def game(screen):
-    background = pygame.image.load(path.join(img_dir, 'Cenario top.png')).convert()
+    background = pygame.image.load(path.join(img_dir, 'Ultimocenario(espero).png')).convert()
     background_rect = background.get_rect()
     
     running = True
@@ -540,51 +561,51 @@ def game(screen):
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    player.esquerda = True
+                    player1.esquerda = True
                     bullets.cima = False
                     bullets.baixo = False
                     bullets.esquerda= True
                     bullets.direita = False
-                    player.speedx = -2
+                    player1.speedx = -2
                 if event.key == pygame.K_RIGHT:
-                    player.direita = True
+                    player1.direita = True
                     bullets.cima = False
                     bullets.baixo = False
                     bullets.esquerda= False
                     bullets.direita = True
-                    player.speedx = 2
+                    player1.speedx = 2
                 if event.key == pygame.K_DOWN:
-                    player.baixo = True
+                    player1.baixo = True
                     bullets.cima = False
                     bullets.baixo = True
                     bullets.esquerda= False
                     bullets.direita = False
-                    player.speedy = 2
+                    player1.speedy = 2
                 if event.key == pygame.K_UP:
-                    player.cima = True
+                    player1.cima = True
                     bullets.cima = True
                     bullets.baixo = False
                     bullets.esquerda= False
                     bullets.direita = False
-                    player.speedy = -2   
+                    player1.speedy = -2   
                 if event.key == pygame.K_SPACE:
                     if bullets.esquerda == True:
-                        bullet = Bullet(player.rect.centerx, player.rect.bottom -5)
+                        bullet = Bullet(player1.rect.centerx, player1.rect.bottom -5)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedx = -4
                     elif bullets.direita == True:
-                        bullet = Bullet(player.rect.centerx, player.rect.bottom -5)
+                        bullet = Bullet(player1.rect.centerx, player1.rect.bottom -5)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedx = 4
                     elif bullets.baixo == True:
-                        bullet = Bullet(player.rect.centerx, player.rect.top + 20)
+                        bullet = Bullet(player1.rect.centerx, player1.rect.top + 20)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedy = 4
                     elif bullets.cima == True:
-                        bullet = Bullet(player.rect.centerx, player.rect.top +10)
+                        bullet = Bullet(player1.rect.centerx, player1.rect.top +10)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedy = -4
@@ -639,17 +660,17 @@ def game(screen):
                         bullet.speedy = -4               
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
-                    player.esquerda = False
-                    player.speedx = 0
+                    player1.esquerda = False
+                    player1.speedx = 0
                 if event.key == pygame.K_RIGHT:
-                    player.direita = False
-                    player.speedx = 0
+                    player1.direita = False
+                    player1.speedx = 0
                 if event.key == pygame.K_UP:
-                    player.cima = False
-                    player.speedy = 0
+                    player1.cima = False
+                    player1.speedy = 0
                 if event.key == pygame.K_DOWN:
-                    player.baixo = False
-                    player.speedy = 0
+                    player1.baixo = False
+                    player1.speedy = 0
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a:
                     player3.esquerda = False
@@ -659,19 +680,68 @@ def game(screen):
                     player3.speedx = 0
                 if event.key == pygame.K_w:
                     player3.cima = False
-                    player.speedy = 0
+                    player3.speedy = 0
                 if event.key == pygame.K_s:
                     player3.baixo = False
                     player3.speedy = 0
                                       
         all_sprites.update()
 
+        
+        hitsp1 = pygame.sprite.spritecollide(player, Bullet, False, pygame.sprite.collide_circle)
+        if hitsp1:
+            player.self.vida -= 1
+            if player.self.vida == 0:
+                player.self.rect.centerx = WIDTH - 30
+                player.self.rect.bottom = 100
+        
+        hitsp2 = pygame.sprite.spritecollide(player2, Bullet, False, pygame.sprite.collide_circle)
+        if hitsp2:
+            player2.self.vida -= 1
+            if player2.self.vida == 0:
+                player2.self.rect.centerx = WIDTH - 30
+                player2.self.rect.bottom = 100
+        
+        hitsp3 = pygame.sprite.spritecollide(player3, Bullet, False, pygame.sprite.collide_circle)
+        if hitsp3:
+            player3.self.vida -= 1
+            if player3.self.vida == 0:
+                player3.self.rect.centerx = WIDTH - 30
+                player3.self.rect.bottom = 100
+        
+        hitsp4 = pygame.sprite.spritecollide(player4, Bullet, False, pygame.sprite.collide_circle)
+        if hitsp4:
+            player4.self.vida -= 1
+            if player4.self.vida == 0:
+                player4.self.rect.centerx = WIDTH - 30
+                player4.self.rect.bottom = 100
+                
+        
         hits = pygame.sprite.spritecollide(player, paredes, False, pygame.sprite.collide_circle)
+
+        hits = pygame.sprite.spritecollide(player1, paredes, False, pygame.sprite.collide_circle)
         if hits:
-            player.speedx = 0
-            player.speedy = 0
+            player1.speedx = 0
+            player1.speedy = 0
+        hits = pygame.sprite.spritecollide(player2, paredes, False, pygame.sprite.collide_circle)
+        if hits:
+            player2.speedx = 0
+            player2.speedy = 0
+
+        hits = pygame.sprite.spritecollide(player3, paredes, False, pygame.sprite.collide_circle)
+        if hits:
+            player3.speedx = 0
+            player3.speedy = 0
+
+        if hits:
+            player4.speedx = 0
+            player4.speedy = 0
+
         hits = pygame.sprite.groupcollide(paredes, bullets, False, True)
+
         hits = pygame.sprite.groupcollide(grama, bullets, True, True)
+        
+
 
         screen.fill(BLACK)
         screen.blit(background, background_rect)
