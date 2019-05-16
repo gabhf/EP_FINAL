@@ -364,9 +364,13 @@ class OvoVermelho(pygame.sprite.Sprite):
         self.rect.centerx = 80
         self.rect.bottom = HEIGHT - 60
         
+        self.speedx = 0
+        self.speedy = 0
+        
     def update(self):
         self.rect.x += self.speedx
         self.rect.y += self.speedy
+         
 
 class OvoAzul(pygame.sprite.Sprite):
     def __init__(self):
@@ -385,6 +389,14 @@ class OvoAzul(pygame.sprite.Sprite):
         self.rect.centerx = WIDTH - 100
         self.rect.bottom = 90
         
+        self.speedx = 0
+        self.speedy = 0
+        
+    def update(self):
+        self.rect.x += self.speedx
+        self.rect.y += self.speedy
+    
+   
 #cria classe de parede
 class Parede(pygame.sprite.Sprite):
     # Construtor da classe.
@@ -688,36 +700,6 @@ def game(screen):
         all_sprites.update()
 
         
-        hitsp1 = pygame.sprite.spritecollide(player, Bullet, False, pygame.sprite.collide_circle)
-        if hitsp1:
-            player.self.vida -= 1
-            if player.self.vida == 0:
-                player.self.rect.centerx = WIDTH - 30
-                player.self.rect.bottom = 100
-        
-        hitsp2 = pygame.sprite.spritecollide(player2, Bullet, False, pygame.sprite.collide_circle)
-        if hitsp2:
-            player2.self.vida -= 1
-            if player2.self.vida == 0:
-                player2.self.rect.centerx = WIDTH - 30
-                player2.self.rect.bottom = 100
-        
-        hitsp3 = pygame.sprite.spritecollide(player3, Bullet, False, pygame.sprite.collide_circle)
-        if hitsp3:
-            player3.self.vida -= 1
-            if player3.self.vida == 0:
-                player3.self.rect.centerx = WIDTH - 30
-                player3.self.rect.bottom = 100
-        
-        hitsp4 = pygame.sprite.spritecollide(player4, Bullet, False, pygame.sprite.collide_circle)
-        if hitsp4:
-            player4.self.vida -= 1
-            if player4.self.vida == 0:
-                player4.self.rect.centerx = WIDTH - 30
-                player4.self.rect.bottom = 100
-                
-        
-        hits = pygame.sprite.spritecollide(player, paredes, False, pygame.sprite.collide_circle)
 
         hits = pygame.sprite.spritecollide(player1, paredes, False, pygame.sprite.collide_circle)
         if hits:
@@ -732,11 +714,18 @@ def game(screen):
         if hits:
             player3.speedx = 0
             player3.speedy = 0
-
+        
+        hits = pygame.sprite.spritecollide(player4, paredes, False, pygame.sprite.collide_circle)
         if hits:
             player4.speedx = 0
             player4.speedy = 0
 
+        hits = pygame.sprite.spritecollide(player1, OvoAzul , False, pygame.sprite.collide_circle)
+        if hits:
+            ovo_azul.speedx = player1.speedx
+            ovo_azul.speedy = player1.speedy
+        
+        
         hits = pygame.sprite.groupcollide(paredes, bullets, False, True)
 
         hits = pygame.sprite.groupcollide(grama, bullets, True, True)
