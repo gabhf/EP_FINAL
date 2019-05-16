@@ -4,30 +4,6 @@ from os import path
 
 from config import *
 
-class OvoVermelho(pygame.sprite.Sprite):
-    def __init__(self):
-        pygame.sprite.Sprite.__init__(self)
-    
-        OVO_img = pygame.image.load(path.join(img_dir, "OVOA.png")).convert()
-
-        self.image = OVO_img
-        
-        self.image = pygame.transform.scale(OVO_img,(25,30))
-        
-        self.image.set_colorkey(WHITE)
-        
-        self.rect = self.image.get_rect()
-        
-        self.rect.centerx = 60
-        self.rect.bottom = HEIGHT - 50
-
-        self.speedx = 0
-        self.speedy = 0
-        
-    def update(self):
-        self.rect.x += self.speedx
-        self.rect.y += self.speedy
-
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         
@@ -503,7 +479,7 @@ player2= Player2()
 player3= Player3()
 player4= Player4()
 
-
+ovo_sprites = pygame.sprite.Group()
 all_sprites = pygame.sprite.Group()
 
 all_sprites.add(ninho_azul)
@@ -512,8 +488,8 @@ all_sprites.add(player1)
 all_sprites.add(player2)
 all_sprites.add(player3)
 all_sprites.add(player4)
-all_sprites.add(ovo_azul)
-all_sprites.add(ovo_vermelho)
+ovo_sprites.add(ovo_azul)
+ovo_sprites.add(ovo_vermelho)
 bullets = pygame.sprite.Group()
 #cria a lista de paredes
 paredes = []
@@ -532,7 +508,7 @@ mapa = [
 "W        WWW                 WWWW",
 "W                            WWWW",
 "W                  WWW          W",
-"W        W                      W",
+"W        W   G                  W",
 "W        W                  W   W",
 "W  WWW   W          WWWWW   W   W",
 "W  WWW              W           W",
@@ -726,8 +702,8 @@ def game(screen):
             player4.speedx = 0
             player4.speedy = 0
 
-        hits = pygame.sprite.spritecollide(player1, OvoAzul , False, pygame.sprite.collide_circle)
-        if hits:
+        hitovo = pygame.sprite.collide_rect(player1, ovo_azul)
+        if hitovo:
             ovo_azul.speedx = player1.speedx
             ovo_azul.speedy = player1.speedy
         
@@ -741,6 +717,7 @@ def game(screen):
         screen.fill(BLACK)
         screen.blit(background, background_rect)
         all_sprites.draw(screen)
+        ovo_sprites.draw(screen)
         paredes.draw(screen)
         grama.draw(screen)
         
