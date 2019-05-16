@@ -20,6 +20,9 @@ class OvoVermelho(pygame.sprite.Sprite):
         
         self.rect.centerx = 60
         self.rect.bottom = HEIGHT - 50
+
+        self.speedx = 0
+        self.speedy = 0
         
     def update(self):
         self.rect.x += self.speedx
@@ -168,12 +171,12 @@ class Player3(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         
-        player_img = pygame.image.load(path.join(img_dir, "dragaoazull.png")).convert()
+        player_img = pygame.image.load(path.join(img_dir, "dragaoazull2.png")).convert()
         self.image = player_img
         
         self.image = pygame.transform.scale(player_img,(30,30))
         
-        self.image.set_colorkey(WHITE)
+        self.image.set_colorkey(BLACK)
         
         self.rect = self.image.get_rect()
         
@@ -192,31 +195,31 @@ class Player3(pygame.sprite.Sprite):
     
     def update(self):
         if self.direita:
-            player_img = pygame.image.load(path.join(img_dir, "dragaoazulr.png")).convert()
+            player_img = pygame.image.load(path.join(img_dir, "dragaoazulr2.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
         
-            self.image.set_colorkey(WHITE)
+            self.image.set_colorkey(BLACK)
             
         elif self.esquerda:
-            player_img = pygame.image.load(path.join(img_dir, "dragaoazull.png")).convert()
+            player_img = pygame.image.load(path.join(img_dir, "dragaoazull2.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
             
-            self.image.set_colorkey(WHITE)
+            self.image.set_colorkey(BLACK)
         
         elif self.baixo:
-            player_img = pygame.image.load(path.join(img_dir, "dragaoazuld.png")).convert()
+            player_img = pygame.image.load(path.join(img_dir, "dragaoazuld2.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
         
-            self.image.set_colorkey(WHITE)
+            self.image.set_colorkey(BLACK)
         elif self.cima:
-            player_img = pygame.image.load(path.join(img_dir, "dragaoazulu.png")).convert()
+            player_img = pygame.image.load(path.join(img_dir, "dragaoazulu2.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
         
-            self.image.set_colorkey(WHITE)
+            self.image.set_colorkey(BLACK)
 
         self.rect.x += self.speedx
         self.rect.y += self.speedy
@@ -349,6 +352,9 @@ class OvoVermelho(pygame.sprite.Sprite):
         
         self.rect.centerx = 80
         self.rect.bottom = HEIGHT - 60
+
+        self.speedx = 0
+        self.speedy = 0
         
     def update(self):
         self.rect.x += self.speedx
@@ -703,6 +709,3 @@ def game(screen):
         
         # Depois de desenhar tudo, inverte o display.
         pygame.display.flip()
-        
-
-
