@@ -218,6 +218,8 @@ class Player3(pygame.sprite.Sprite):
         self.esquerda = False
         self.baixo = False
         self.cima = False
+        
+        self.ovo = None        
     
     def update(self):
         if self.direita:
@@ -263,7 +265,13 @@ class Player3(pygame.sprite.Sprite):
             self.rect.bottom = HEIGHT
 
         if self.rect.top < 0:
-            self.rect.top = 0            
+            self.rect.top = 0  
+            
+        if self.ovo:
+            self.ovo.rect.x = self.rect.x
+            self.ovo.rect.y = self.rect.y
+            
+        
     def volta(self):        
         self.rect.x = self.x_prev
         self.rect.y = self.y_prev
