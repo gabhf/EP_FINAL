@@ -174,22 +174,22 @@ def game(screen):
                         bullet = Bullet(player3.rect.centerx, player3.rect.bottom -5, 3)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
-                        bullets.speedx = -4
+                        bullet.speedx = -4
                     elif bullets.direita == True:
-                        bullets = Bullet(player3.rect.centerx, player3.rect.bottom -5, 3)
-                        all_sprites.add(bullets)
+                        bullet = Bullet(player3.rect.centerx, player3.rect.bottom -5, 3)
+                        all_sprites.add(bullet)
                         bullets.add(bullet)
-                        bullets.speedx = 4
+                        bullet.speedx = 4
                     elif bullets.baixo == True:
-                        bullets = Bullet(player3.rect.centerx, player3.rect.top + 20, 3)
-                        all_sprites.add(bullets)
+                        bullet = Bullet(player3.rect.centerx, player3.rect.top + 20, 3)
+                        all_sprites.add(bullet)
                         bullets.add(bullet)
-                        bullets.speedy = 4
+                        bullet.speedy = 4
                     elif bullets.cima == True:
-                        bullets = Bullet(player3.rect.centerx, player3.rect.top +10, 3)
-                        all_sprites.add(bullets)
+                        bullet = Bullet(player3.rect.centerx, player3.rect.top +10, 3)
+                        all_sprites.add(bullet)
                         bullets.add(bullet)
-                        bullets.speedy = -4               
+                        bullet.speedy = -4               
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
                     player1.esquerda = False
