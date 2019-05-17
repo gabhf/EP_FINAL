@@ -383,7 +383,7 @@ class ninhoA(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
     
-        ninho_img = pygame.image.load(path.join(img_dir, "ninho.png")).convert()
+        ninho_img = pygame.image.load(path.join(img_dir, "ninhoA.png")).convert()
 
         self.image = ninho_img
         
