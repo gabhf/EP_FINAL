@@ -117,6 +117,9 @@ class Player2(pygame.sprite.Sprite):
         
         self.rect.centerx = 40
         self.rect.bottom = HEIGHT - 80
+
+        self.x_prev = self.rect.x
+        self.y_prev = self.rect.y
         
         self.speedx = 0
         self.speedy = 0
@@ -155,6 +158,9 @@ class Player2(pygame.sprite.Sprite):
             self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
+
+        self.x_prev = self.rect.x
+        self.y_prev = self.rect.y
             
         self.rect.x += self.speedx
         self.rect.y += self.speedy
@@ -170,6 +176,16 @@ class Player2(pygame.sprite.Sprite):
 
         if self.rect.top < 0:
             self.rect.top = 0
+
+    def volta(self):        
+        self.rect.x = self.x_prev
+        self.rect.y = self.y_prev
+
+    def toma_ovo(self, ovo):
+        self.ovo = ovo
+        
+    def deixa_ovo(self):
+        self.ovo = None
 
 class Player3(pygame.sprite.Sprite):
     def __init__(self):
@@ -189,6 +205,9 @@ class Player3(pygame.sprite.Sprite):
         
         self.rect.centerx = WIDTH - 40
         self.rect.bottom = 50
+
+        self.x_prev = self.rect.x
+        self.y_prev = self.rect.y
         
         self.speedx = 0
         self.speedy = 0
@@ -228,6 +247,9 @@ class Player3(pygame.sprite.Sprite):
         
             self.image.set_colorkey(BLACK)
 
+        self.x_prev = self.rect.x
+        self.y_prev = self.rect.y
+
         self.rect.x += self.speedx
         self.rect.y += self.speedy
         
@@ -242,6 +264,15 @@ class Player3(pygame.sprite.Sprite):
 
         if self.rect.top < 0:
             self.rect.top = 0            
+    def volta(self):        
+        self.rect.x = self.x_prev
+        self.rect.y = self.y_prev
+
+    def toma_ovo(self, ovo):
+        self.ovo = ovo
+        
+    def deixa_ovo(self):
+        self.ovo = None
 
 class Player4(pygame.sprite.Sprite):
     def __init__(self):
@@ -263,6 +294,9 @@ class Player4(pygame.sprite.Sprite):
         
         self.rect.centerx = WIDTH - 40
         self.rect.bottom = 80
+
+        self.x_prev = self.rect.x
+        self.y_prev = self.rect.y
         
         self.speedx = 0
         self.speedy = 0
@@ -302,6 +336,9 @@ class Player4(pygame.sprite.Sprite):
         
             self.image.set_colorkey(WHITE)
 
+        self.x_prev = self.rect.x
+        self.y_prev = self.rect.y
+
         self.rect.x += self.speedx
         self.rect.y += self.speedy
         
@@ -316,6 +353,16 @@ class Player4(pygame.sprite.Sprite):
 
         if self.rect.top < 0:
             self.rect.top = 0
+
+    def volta(self):        
+        self.rect.x = self.x_prev
+        self.rect.y = self.y_prev
+
+    def toma_ovo(self, ovo):
+        self.ovo = ovo
+        
+    def deixa_ovo(self):
+        self.ovo = None
 
 class ninhoV(pygame.sprite.Sprite):
     def __init__(self):
@@ -474,7 +521,7 @@ class Bullet(pygame.sprite.Sprite):
     def update(self):
         self.rect.x += self.speedx
         self.rect.y += self.speedy
-        # Se o tiro passar do inicio da tela, morre.
+        # Se o tiro passar da tela, morre.
         if self.rect.bottom < 0:
             self.kill()
         elif self.rect.top > HEIGHT:
