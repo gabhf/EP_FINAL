@@ -1,0 +1,56 @@
+import pygame
+import random
+from os import path
+
+from config import img_dir, BLACK, FPS, GAME, QUIT
+
+def init_screen(screen):
+    # Variável para o ajuste de velocidade
+    clock = pygame.time.Clock()
+
+    # Carrega o fundo da tela inicial
+    background = pygame.image.load(path.join(img_dir, 'banguela.png')).convert()
+    background_rect = background.get_rect()
+
+    running = True
+    while running:
+        
+        # Ajusta a velocidade do jogo.
+        clock.tick(FPS)
+        
+        # Processa os eventos (mouse, teclado, botão, etc).
+        for event in pygame.event.get():
+            # Verifica se foi fechado.
+            if event.type == pygame.QUIT:
+                state = QUIT
+                running = False
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                position = pygame.mouse.get_pos()
+                x_mouse = position[0]
+                y_mouse = position[1]
+                if 584 + 171> x_mouse > 584 and 286 + 57> y_mouse > 286: 
+                    state = GAME
+                    running = False
+        position = pygame.mouse.get_pos()
+        x_mouse = position[0]
+        y_mouse = position[1]
+        if 584 + 171> x_mouse > 584 and 286 + 57> y_mouse > 286:       
+            background = pygame.image.load(path.join(img_dir, 'banguela2.png')).convert()
+        elif 584 + 172> x_mouse > 584 and 362 + 59> y_mouse > 362:
+            background = pygame.image.load(path.join(img_dir, 'banguela3.png')).convert()
+        elif 584 + 172> x_mouse > 584 and 440 + 59> y_mouse > 440:
+            background = pygame.image.load(path.join(img_dir, 'banguela4.png')).convert()
+            
+        
+        
+        else:
+            background = pygame.image.load(path.join(img_dir, 'banguela.png')).convert()
+        # A cada loop, redesenha o fundo e os sprites
+        screen.fill(BLACK)
+        screen.blit(background, background_rect)
+
+        # Depois de desenhar tudo, inverte o display.
+        pygame.display.flip()
+
+    return state
