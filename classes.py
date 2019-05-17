@@ -417,6 +417,8 @@ class OvoVermelho(pygame.sprite.Sprite):
         self.speedx = 0
         self.speedy = 0
         
+        self.cor = 1 
+        
     def update(self):
         self.rect.x += self.speedx
         self.rect.y += self.speedy
@@ -441,6 +443,8 @@ class OvoAzul(pygame.sprite.Sprite):
         
         self.speedx = 0
         self.speedy = 0
+        
+        self.cor = 2
         
     def update(self):
         self.rect.x += self.speedx
