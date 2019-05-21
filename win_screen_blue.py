@@ -5,12 +5,12 @@ from config import*
 
 from config import img_dir, BLACK, FPS, GAME, QUIT, INIT
 
-def win_screen_red(screen):
+def win_screen_blue(screen):
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
 
     # Carrega o fundo da tela inicial
-    background = pygame.image.load(path.join(img_dir, 'time vermelho.png')).convert()
+    background = pygame.image.load(path.join(img_dir, 'time azul.png')).convert()
     background_rect = background.get_rect()
 
     running = True

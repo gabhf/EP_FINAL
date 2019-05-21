@@ -4,6 +4,7 @@ from os import path
 from classes import *
 from config import *
 from win_screen_red import*
+from win_screen_blue import*
 
 
 def game(screen):
