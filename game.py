@@ -3,6 +3,7 @@ import random
 from os import path
 from classes import *
 from config import *
+from win_screen_red import*
 
 
 def game(screen):
@@ -90,6 +91,7 @@ def game(screen):
             # Verifica se foi fechado
             if event.type == pygame.QUIT:
                 running = False
+                state = QUIT
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
@@ -307,13 +309,17 @@ def game(screen):
         if hit_win_vermelho:
             for ovo in hit_win_vermelho:
                 if ovo.cor == 2:
-                    print("time vermelho ganhou")
+                    state = WINV
+                    running  = False
+                        
         
         hit_win_azul = pygame.sprite.spritecollide(ninho_azul, ovo_sprites, False, pygame.sprite.collide_circle)
         if hit_win_azul:
             for ovo in hit_win_azul:
                 if ovo.cor == 1:
-                    print("time azul ganhou")
+                    state = WINA
+                    running  = False
+                    
         
 
 
@@ -327,4 +333,4 @@ def game(screen):
         # Depois de desenhar tudo, inverte o display.
         pygame.display.flip()
         
-    return QUIT
+    return state
