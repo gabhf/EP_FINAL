@@ -4,7 +4,7 @@ from config import *
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         
-        vida = 2
+        vida = 1
         self.vida = vida
         pygame.sprite.Sprite.__init__(self)
     
@@ -100,7 +100,7 @@ class Player(pygame.sprite.Sprite):
 class Player2(pygame.sprite.Sprite):
     def __init__(self):
         
-        vida = 2
+        vida = 1
         self.vida = vida
         
         pygame.sprite.Sprite.__init__(self)
@@ -190,7 +190,7 @@ class Player2(pygame.sprite.Sprite):
 class Player3(pygame.sprite.Sprite):
     def __init__(self):
         
-        vida = 2
+        vida = 1
         self.vida = vida
         pygame.sprite.Sprite.__init__(self)
         
@@ -285,7 +285,7 @@ class Player3(pygame.sprite.Sprite):
 class Player4(pygame.sprite.Sprite):
     def __init__(self):
         
-        vida = 2
+        vida = 1
         self.vida = vida
         
         pygame.sprite.Sprite.__init__(self)
