@@ -97,96 +97,88 @@ def game(screen):
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    player1.esquerda = True
+                    player1.dir = LEFT
                     player1.speedx = -2
                 if event.key == pygame.K_RIGHT:
-                    player1.direita = True
+                    player1.dir = RIGHT
                     player1.speedx = 2
                 if event.key == pygame.K_DOWN:
-                    player1.baixo = True
+                    player1.dir = DOWN
                     player1.speedy = 2
                 if event.key == pygame.K_UP:
-                    player1.cima = True
+                    player1.dir = UP
                     player1.speedy = -2   
                 if event.key == pygame.K_SPACE:
-                    if player1.esquerda == True:
+                    if player1.dir == LEFT:
                         bullet = Bullet(player1.rect.centerx, player1.rect.bottom -5, 1)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedx = -4
-                    elif player1.direita == True:
+                    elif player1.dir == RIGHT:
                         bullet = Bullet(player1.rect.centerx, player1.rect.bottom -5, 1)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedx = 4
-                    elif player1.baixo == True:
+                    elif player1.dir == DOWN:
                         bullet = Bullet(player1.rect.centerx, player1.rect.top + 20, 1)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedy = 4
-                    elif player1.cima == True:
+                    elif player1.dir == UP:
                         bullet = Bullet(player1.rect.centerx, player1.rect.top + 10, 1)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedy = -4
                 if event.key == pygame.K_a:
-                    player3.esquerda = True
+                    player3.dir = LEFT
                     player3.speedx = -2
                 if event.key == pygame.K_d:
-                    player3.direita = True
+                    player3.dir = RIGHT
                     player3.speedx = 2
                 if event.key == pygame.K_s:
-                    player3.baixo = True
+                    player3.dir = DOWN
                     player3.speedy = 2
                 if event.key == pygame.K_w:
-                    player3.cima = True
+                    player3.dir = UP
                     player3.speedy = -2   
                 if event.key == pygame.K_q:
-                    if player3.esquerda == True:
+                    if player3.dir == LEFT:
                         bullet = Bullet(player3.rect.centerx, player3.rect.bottom -5, 3)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedx = -4
-                    elif player3.direita == True:
+                    elif player3.dir == RIGHT:
                         bullet = Bullet(player3.rect.centerx, player3.rect.bottom -5, 3)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedx = 4
-                    elif player3.baixo == True:
+                    elif player3.dir == DOWN:
                         bullet = Bullet(player3.rect.centerx, player3.rect.top + 20, 3)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedy = 4
-                    elif player3.cima == True:
+                    elif player3.dir == UP:
                         bullet = Bullet(player3.rect.centerx, player3.rect.top +10, 3)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedy = -4               
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
-                    player1.esquerda = False
                     player1.speedx = 0
                 if event.key == pygame.K_RIGHT:
-                    player1.direita = False
                     player1.speedx = 0
                 if event.key == pygame.K_UP:
-                    player1.cima = False
                     player1.speedy = 0
                 if event.key == pygame.K_DOWN:
-                    player1.baixo = False
                     player1.speedy = 0
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a:
-                    player3.esquerda = False
                     player3.speedx = 0
                 if event.key == pygame.K_d:
-                    player3.direita = False
                     player3.speedx = 0
                 if event.key == pygame.K_w:
-                    player3.cima = False
                     player3.speedy = 0
                 if event.key == pygame.K_s:
-                    player3.baixo = False
                     player3.speedy = 0
                                       
         all_sprites.update()

@@ -24,3 +24,8 @@ GAME = 1
 QUIT = 2
 WINV = 3
 WINA = 4
+
+UP = 0
+DOWN = 1
+LEFT = 2
+RIGHT= 3
