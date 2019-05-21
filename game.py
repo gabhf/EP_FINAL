@@ -32,6 +32,7 @@ def game(screen):
     ovo_sprites.add(ovo_azul)
     ovo_sprites.add(ovo_vermelho)
     bullets = pygame.sprite.Group()
+    
     #cria a lista de paredes
     paredes = []
     grama = []
@@ -97,98 +98,66 @@ def game(screen):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     player1.esquerda = True
-                    bullets.cima = False
-                    bullets.baixo = False
-                    bullets.esquerda= True
-                    bullets.direita = False
                     player1.speedx = -2
                 if event.key == pygame.K_RIGHT:
                     player1.direita = True
-                    bullets.cima = False
-                    bullets.baixo = False
-                    bullets.esquerda= False
-                    bullets.direita = True
                     player1.speedx = 2
                 if event.key == pygame.K_DOWN:
                     player1.baixo = True
-                    bullets.cima = False
-                    bullets.baixo = True
-                    bullets.esquerda= False
-                    bullets.direita = False
                     player1.speedy = 2
                 if event.key == pygame.K_UP:
                     player1.cima = True
-                    bullets.cima = True
-                    bullets.baixo = False
-                    bullets.esquerda= False
-                    bullets.direita = False
                     player1.speedy = -2   
                 if event.key == pygame.K_SPACE:
-                    if bullets.esquerda == True:
+                    if player1.esquerda == True:
                         bullet = Bullet(player1.rect.centerx, player1.rect.bottom -5, 1)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedx = -4
-                    elif bullets.direita == True:
+                    elif player1.direita == True:
                         bullet = Bullet(player1.rect.centerx, player1.rect.bottom -5, 1)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedx = 4
-                    elif bullets.baixo == True:
+                    elif player1.baixo == True:
                         bullet = Bullet(player1.rect.centerx, player1.rect.top + 20, 1)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedy = 4
-                    elif bullets.cima == True:
+                    elif player1.cima == True:
                         bullet = Bullet(player1.rect.centerx, player1.rect.top + 10, 1)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedy = -4
                 if event.key == pygame.K_a:
                     player3.esquerda = True
-                    bullets.cima = False
-                    bullets.baixo = False
-                    bullets.esquerda= True
-                    bullets.direita = False
                     player3.speedx = -2
                 if event.key == pygame.K_d:
                     player3.direita = True
-                    bullets.cima = False
-                    bullets.baixo = False
-                    bullets.esquerda= False
-                    bullets.direita = True
                     player3.speedx = 2
                 if event.key == pygame.K_s:
                     player3.baixo = True
-                    bullets.cima = False
-                    bullets.baixo = True
-                    bullets.esquerda= False
-                    bullets.direita = False
                     player3.speedy = 2
                 if event.key == pygame.K_w:
                     player3.cima = True
-                    bullets.cima = True
-                    bullets.baixo = False
-                    bullets.esquerda= False
-                    bullets.direita = False
                     player3.speedy = -2   
                 if event.key == pygame.K_q:
-                    if bullets.esquerda == True:
+                    if player3.esquerda == True:
                         bullet = Bullet(player3.rect.centerx, player3.rect.bottom -5, 3)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedx = -4
-                    elif bullets.direita == True:
+                    elif player3.direita == True:
                         bullet = Bullet(player3.rect.centerx, player3.rect.bottom -5, 3)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedx = 4
-                    elif bullets.baixo == True:
+                    elif player3.baixo == True:
                         bullet = Bullet(player3.rect.centerx, player3.rect.top + 20, 3)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedy = 4
-                    elif bullets.cima == True:
+                    elif player3.cima == True:
                         bullet = Bullet(player3.rect.centerx, player3.rect.top +10, 3)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
