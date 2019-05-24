@@ -4,7 +4,7 @@ from config import *
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         
-        vida = 2
+        vida = 1
         self.vida = vida
         pygame.sprite.Sprite.__init__(self)
     
@@ -29,35 +29,32 @@ class Player(pygame.sprite.Sprite):
 
         self.radius = 10
         
-        self.direita = False
-        self.esquerda = False
-        self.baixo = False
-        self.cima = False
+        self.dir = RIGHT
         
         self.ovo = None
         
     def update(self):
-        if self.direita:
+        if self.dir == RIGHT:
             player_img = pygame.image.load(path.join(img_dir, "dragaovermelhor.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
             
-        elif self.esquerda:
+        elif self.dir == LEFT:
             player_img = pygame.image.load(path.join(img_dir, "dragaovermelhol.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
             
             self.image.set_colorkey(WHITE)
         
-        elif self.baixo:
+        elif self.dir == DOWN:
             player_img = pygame.image.load(path.join(img_dir, "dragaovermelhod.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
-        elif self.cima:
+        elif self.dir == UP:
             player_img = pygame.image.load(path.join(img_dir, "dragaovermelhou.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
@@ -100,7 +97,7 @@ class Player(pygame.sprite.Sprite):
 class Player2(pygame.sprite.Sprite):
     def __init__(self):
         
-        vida = 2
+        vida = 1
         self.vida = vida
         
         pygame.sprite.Sprite.__init__(self)
@@ -126,33 +123,30 @@ class Player2(pygame.sprite.Sprite):
 
         self.radius = 10
     
-        self.direita = False
-        self.esquerda = False
-        self.baixo = False
-        self.cima = False
+        self.dir = RIGHT
         
     def update(self):
-        if self.direita:
+        if self.dir == RIGHT:
             player_img = pygame.image.load(path.join(img_dir, "dragaoroxor.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
             
-        elif self.esquerda:
+        elif self.dir==LEFT:
             player_img = pygame.image.load(path.join(img_dir, "dragaoroxol.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
             
             self.image.set_colorkey(WHITE)
         
-        elif self.baixo:
+        elif self.dir == DOWN:
             player_img = pygame.image.load(path.join(img_dir, "dragaoroxod.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
-        elif self.cima:
+        elif self.dir==UP:
             player_img = pygame.image.load(path.join(img_dir, "dragaoroxou.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
@@ -190,7 +184,7 @@ class Player2(pygame.sprite.Sprite):
 class Player3(pygame.sprite.Sprite):
     def __init__(self):
         
-        vida = 2
+        vida = 1
         self.vida = vida
         pygame.sprite.Sprite.__init__(self)
         
@@ -214,35 +208,32 @@ class Player3(pygame.sprite.Sprite):
 
         self.radius = 10
 
-        self.direita = False
-        self.esquerda = False
-        self.baixo = False
-        self.cima = False
+        self.dir = LEFT
         
         self.ovo = None        
     
     def update(self):
-        if self.direita:
+        if self.dir == RIGHT:
             player_img = pygame.image.load(path.join(img_dir, "dragaoazulr2.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(BLACK)
             
-        elif self.esquerda:
+        elif self.dir == LEFT:
             player_img = pygame.image.load(path.join(img_dir, "dragaoazull2.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
             
             self.image.set_colorkey(BLACK)
         
-        elif self.baixo:
+        elif self.dir == DOWN:
             player_img = pygame.image.load(path.join(img_dir, "dragaoazuld2.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(BLACK)
-        elif self.cima:
+        elif self.dir == UP:
             player_img = pygame.image.load(path.join(img_dir, "dragaoazulu2.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
@@ -285,7 +276,7 @@ class Player3(pygame.sprite.Sprite):
 class Player4(pygame.sprite.Sprite):
     def __init__(self):
         
-        vida = 2
+        vida = 1
         self.vida = vida
         
         pygame.sprite.Sprite.__init__(self)
@@ -311,33 +302,30 @@ class Player4(pygame.sprite.Sprite):
 
         self.radius = 10
 
-        self.direita = False
-        self.esquerda = False
-        self.baixo = False
-        self.cima = False
+        self.dir = LEFT
     
     def update(self):
-        if self.direita:
+        if self.dir == RIGHT:
             player_img = pygame.image.load(path.join(img_dir, "dragaoverder.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
             
-        elif self.esquerda:
+        elif self.dir == LEFT:
             player_img = pygame.image.load(path.join(img_dir, "dragaoverdel.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
             
             self.image.set_colorkey(WHITE)
         
-        elif self.baixo:
+        elif self.dir == DOWN:
             player_img = pygame.image.load(path.join(img_dir, "dragaoverded.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
         
             self.image.set_colorkey(WHITE)
-        elif self.cima:
+        elif self.dir == UP:
             player_img = pygame.image.load(path.join(img_dir, "dragaoverdeu.png")).convert()
             self.image = player_img
             self.image = pygame.transform.scale(player_img,(30,30))
@@ -521,11 +509,6 @@ class Bullet(pygame.sprite.Sprite):
         self.rect.centerx = x
         self.speedy = 0
         self.speedx = 0
-
-        self.direita = False
-        self.esquerda = False
-        self.baixo = False
-        self.cima = False
         
         self.dono = dono
         

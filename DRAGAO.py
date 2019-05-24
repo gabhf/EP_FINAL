@@ -1,11 +1,12 @@
 import pygame
 import random
 import time
-
 from os import path
 
-from config import WIDTH, HEIGHT, INIT, GAME, QUIT
+from config import WIDTH, HEIGHT, INIT, GAME, QUIT, WINV, WINA, SETTINGS
+
 from init_screen import init_screen
+from win_screen_red import win_screen_red
 from game import *
 
 # Inicialização do Pygame.
@@ -26,6 +27,12 @@ try:
             state = init_screen(screen)
         elif state == GAME:
             state = game(screen)
+        elif state == WINV:
+            state = win_screen_red(screen)
+        elif state == WINA:
+            state = win_screen_blue(screen)
+        elif state == SETTINGS:
+            state = settings(screen)
         else:
             state = QUIT
 finally:
