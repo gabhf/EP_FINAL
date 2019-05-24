@@ -2,7 +2,7 @@ import pygame
 import random
 from os import path
 
-from config import img_dir, BLACK, FPS, GAME, QUIT, SETTINGS
+from config import img_dir, BLACK, FPS, GAME, QUIT, SETTINGS, CREDITS
 
 def init_screen(screen):
     # Variável para o ajuste de velocidade
@@ -34,6 +34,9 @@ def init_screen(screen):
                     running = False
                 elif 584 + 172> x_mouse > 584 and 362 + 59> y_mouse > 362:
                     state = SETTINGS
+                    running = False
+                elif 584 + 172> x_mouse > 584 and 440 + 59> y_mouse > 440:
+                    state = CREDITS
                     running = False
         position = pygame.mouse.get_pos()
         x_mouse = position[0]

@@ -25,6 +25,7 @@ QUIT = 2
 WINV = 3
 WINA = 4
 SETTINGS = 5
+CREDITS = 6
 
 UP = 0
 DOWN = 1

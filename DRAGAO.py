@@ -3,7 +3,7 @@ import random
 import time
 from os import path
 
-from config import WIDTH, HEIGHT, INIT, GAME, QUIT, WINV, WINA, SETTINGS
+from config import WIDTH, HEIGHT, INIT, GAME, QUIT, WINV, WINA, SETTINGS, CREDITS
 
 from init_screen import init_screen
 from win_screen_red import win_screen_red
@@ -33,6 +33,8 @@ try:
             state = win_screen_blue(screen)
         elif state == SETTINGS:
             state = settings(screen)
+        elif state == CREDITS:
+            state = creditss(screen)
         else:
             state = QUIT
 finally:

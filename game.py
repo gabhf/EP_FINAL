@@ -6,6 +6,7 @@ from config import *
 from win_screen_red import*
 from win_screen_blue import*
 from SETTINGS import*
+from CREDITS import*
 
 
 def game(screen):
