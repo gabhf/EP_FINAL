@@ -82,7 +82,12 @@ def game(screen):
 
     background = pygame.image.load(path.join(img_dir, 'Ultimocenario(espero).png')).convert()
     background_rect = background.get_rect()
+
+    pygame.mixer.music.load(path.join(snd_dir, 'Fire_Emblem_Theme_-_8Bit-he7HEV86ozc.wav'))
+    pygame.mixer.music.set_volume(0.4)
     
+    pygame.mixer.music.play(loops=-1)
+
     running = True
     while running:
         
