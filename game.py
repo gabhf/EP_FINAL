@@ -5,6 +5,7 @@ from classes import *
 from config import *
 from win_screen_red import*
 from win_screen_blue import*
+from SETTINGS import*
 
 
 def game(screen):
