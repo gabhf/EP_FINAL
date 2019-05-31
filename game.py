@@ -168,7 +168,40 @@ def game(screen):
                         bullet = Bullet(player3.rect.centerx, player3.rect.top +10, 3)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
-                        bullet.speedy = -4               
+                        bullet.speedy = -4  
+                if event.key == pygame.K_KP4:
+                    player4.dir = LEFT
+                    player4.speedx = -2
+                if event.key == pygame.K_KP6:
+                    player4.dir = RIGHT
+                    player4.speedx = 2
+                if event.key == pygame.K_KP5:
+                    player4.dir = DOWN
+                    player4.speedy = 2
+                if event.key == pygame.K_KP8:
+                    player4.dir = UP
+                    player4.speedy = -2   
+                if event.key == pygame.K_RETURN:
+                    if player4.dir == LEFT:
+                        bullet = Bullet(player4.rect.centerx, player4.rect.bottom -5, 4)
+                        all_sprites.add(bullet)
+                        bullets.add(bullet)
+                        bullet.speedx = -4
+                    elif player4.dir == RIGHT:
+                        bullet = Bullet(player4.rect.centerx, player4.rect.bottom -5, 4)
+                        all_sprites.add(bullet)
+                        bullets.add(bullet)
+                        bullet.speedx = 4
+                    elif player4.dir == DOWN:
+                        bullet = Bullet(player4.rect.centerx, player4.rect.top + 20, 4)
+                        all_sprites.add(bullet)
+                        bullets.add(bullet)
+                        bullet.speedy = 4
+                    elif player4.dir == UP:
+                        bullet = Bullet(player4.rect.centerx, player4.rect.top + 10, 4)
+                        all_sprites.add(bullet)
+                        bullets.add(bullet)
+                        bullet.speedy = -4
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
                     player1.speedx = 0
@@ -187,6 +220,17 @@ def game(screen):
                     player3.speedy = 0
                 if event.key == pygame.K_s:
                     player3.speedy = 0
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_KP4:
+                    player4.speedx = 0
+                if event.key == pygame.K_KP6:
+                    player4.speedx = 0
+                if event.key == pygame.K_KP8:
+                    player4.speedy = 0
+                if event.key == pygame.K_KP5:
+                    player4.speedy = 0
+                
+                
                                       
         all_sprites.update()
 
@@ -269,6 +313,10 @@ def game(screen):
         hitovo3 = pygame.sprite.collide_rect(player3, ovo_vermelho)
         if hitovo3:
             player3.toma_ovo(ovo_vermelho)
+            
+        hitovo4 = pygame.sprite.collide_rect(player4, ovo_vermelho)
+        if hitovo4:
+            player4.toma_ovo(ovo_vermelho)
         
         hits = pygame.sprite.groupcollide(paredes, bullets, False, True)
 
