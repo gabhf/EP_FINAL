@@ -125,6 +125,8 @@ class Player2(pygame.sprite.Sprite):
     
         self.dir = RIGHT
         
+        self.ovo = None
+        
     def update(self):
         if self.dir == RIGHT:
             player_img = pygame.image.load(path.join(img_dir, "dragaoroxor.png")).convert()
@@ -170,7 +172,12 @@ class Player2(pygame.sprite.Sprite):
 
         if self.rect.top < 0:
             self.rect.top = 0
+            
+        if self.ovo:
+            self.ovo.rect.x = self.rect.x
+            self.ovo.rect.y = self.rect.y
 
+   
     def volta(self):        
         self.rect.x = self.x_prev
         self.rect.y = self.y_prev

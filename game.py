@@ -85,6 +85,7 @@ def game(screen):
 
     pygame.mixer.music.load(path.join(snd_dir, 'Fire_Emblem_Theme_-_8Bit-he7HEV86ozc.wav'))
     pygame.mixer.music.set_volume(0.4)
+
     
     pygame.mixer.music.play(loops=-1)
 
@@ -168,7 +169,40 @@ def game(screen):
                         bullet = Bullet(player3.rect.centerx, player3.rect.top +10, 3)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
-                        bullet.speedy = -4               
+                        bullet.speedy = -4
+                if event.key == pygame.K_g:
+                    player2.dir = LEFT
+                    player2.speedx = -2
+                if event.key == pygame.K_j:
+                    player2.dir = RIGHT
+                    player2.speedx = 2
+                if event.key == pygame.K_h:
+                    player2.dir = DOWN
+                    player2.speedy = 2
+                if event.key == pygame.K_y:
+                    player2.dir = UP
+                    player2.speedy = -2   
+                if event.key == pygame.K_x:
+                    if player2.dir == LEFT:
+                        bullet = Bullet(player2.rect.centerx, player2.rect.bottom -5, 2)
+                        all_sprites.add(bullet)
+                        bullets.add(bullet)
+                        bullet.speedx = -4
+                    elif player2.dir == RIGHT:
+                        bullet = Bullet(player2.rect.centerx, player2.rect.bottom -5, 2)
+                        all_sprites.add(bullet)
+                        bullets.add(bullet)
+                        bullet.speedx = 4
+                    elif player2.dir == DOWN:
+                        bullet = Bullet(player2.rect.centerx, player2.rect.top + 20, 2)
+                        all_sprites.add(bullet)
+                        bullets.add(bullet)
+                        bullet.speedy = 4
+                    elif player2.dir == UP:
+                        bullet = Bullet(player2.rect.centerx, player2.rect.top + 10, 2)
+                        all_sprites.add(bullet)
+                        bullets.add(bullet)
+                        bullet.speedy = -4
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
                     player1.speedx = 0
@@ -187,6 +221,15 @@ def game(screen):
                     player3.speedy = 0
                 if event.key == pygame.K_s:
                     player3.speedy = 0
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_g:
+                    player2.speedx = 0
+                if event.key == pygame.K_j:
+                    player2.speedx = 0
+                if event.key == pygame.K_y:
+                    player2.speedy = 0
+                if event.key == pygame.K_h:
+                    player2.speedy = 0
                                       
         all_sprites.update()
 
@@ -235,19 +278,6 @@ def game(screen):
         hits = pygame.sprite.spritecollide(player1, paredes, False, pygame.sprite.collide_circle)
         if hits:
             player1.volta()
-#            for parede in hits:
-#                if player1.speedx > 0 :
-#                    player1.speedx = 0
-#                    player1.rect.right = parede.rect.left
-#                if player1.speedx < 0 :
-#                    player1.speedx = 0
-#                    player1.rect.left = parede.rect.right
-#                if player1.speedy > 0 :
-#                    player1.speedy = 0
-#                    player1.rect.top = parede.rect.bottom
-#                if player1.speedy < 0 :
-#                    player1.speedy = 0
-#                    player1.rect.bottom = parede.rect.top
             
         hits = pygame.sprite.spritecollide(player2, paredes, False, pygame.sprite.collide_circle)
         if hits:
@@ -269,6 +299,10 @@ def game(screen):
         hitovo3 = pygame.sprite.collide_rect(player3, ovo_vermelho)
         if hitovo3:
             player3.toma_ovo(ovo_vermelho)
+        
+        hitovo2 = pygame.sprite.collide_rect(player2, ovo_azul)
+        if hitovo2:
+            player2.toma_ovo(ovo_azul)
         
         hits = pygame.sprite.groupcollide(paredes, bullets, False, True)
 
