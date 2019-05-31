@@ -39,7 +39,7 @@ def win_screen_blue(game_status):
         screen.fill(BLACK)
         screen.blit(background, background_rect)
         
-        text_surface = fonte.render("Tempo: {0}s".format(game_status.milis//1000), True, YELLOW)
+        text_surface = fonte.render("Tempo: {0}s".format(game_status.milis/1000), True, YELLOW)
         text_rect = text_surface.get_rect()
         text_rect.midtop = (WIDTH / 2,  10)
         screen.blit(text_surface, text_rect)
