@@ -26,8 +26,9 @@ def win_screen_red(screen):
                 state = QUIT
                 running = False
             elif event.type == pygame.KEYDOWN:
-                state = INIT
-                running = False
+                if event.key == pygame.K_BACKSPACE:
+                    state = INIT
+                    running = False
 
         screen.fill(BLACK)
         screen.blit(background, background_rect)

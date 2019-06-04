@@ -8,6 +8,12 @@ from win_screen_blue import*
 from SETTINGS import*
 from CREDITS import*
 
+def load_assets(snd_dir):
+    assets = {}
+    assets["Fireball+3"] = pygame.mixer.Sound(path.join(snd_dir, 'Fireball+3.wav'))
+    assets["Fireball+3"].set_volume(0.2)
+    return assets
+
 
 def game(screen):
     # Variável para o ajuste de velocidade
@@ -85,9 +91,10 @@ def game(screen):
 
     pygame.mixer.music.load(path.join(snd_dir, 'Fire_Emblem_Theme_-_8Bit-he7HEV86ozc.wav'))
     pygame.mixer.music.set_volume(0.4)
-
     
     pygame.mixer.music.play(loops=-1)
+    assets = load_assets(snd_dir)
+    pew_sound = assets["Fireball+3"]
 
     running = True
     while running:
@@ -117,11 +124,13 @@ def game(screen):
                     player1.dir = UP
                     player1.speedy = -2   
                 if event.key == pygame.K_SPACE:
+                    pew_sound.play()
                     if player1.dir == LEFT:
                         bullet = Bullet(player1.rect.centerx, player1.rect.bottom -5, 1)
                         all_sprites.add(bullet)
                         bullets.add(bullet)
                         bullet.speedx = -4
+                        
                     elif player1.dir == RIGHT:
                         bullet = Bullet(player1.rect.centerx, player1.rect.bottom -5, 1)
                         all_sprites.add(bullet)
@@ -150,6 +159,7 @@ def game(screen):
                     player3.dir = UP
                     player3.speedy = -2   
                 if event.key == pygame.K_q:
+                    pew_sound.play()
                     if player3.dir == LEFT:
                         bullet = Bullet(player3.rect.centerx, player3.rect.bottom -5, 3)
                         all_sprites.add(bullet)
@@ -183,6 +193,7 @@ def game(screen):
                     player4.dir = UP
                     player4.speedy = -2   
                 if event.key == pygame.K_RETURN:
+                    pew_sound.play()
                     if player4.dir == LEFT:
                         bullet = Bullet(player4.rect.centerx, player4.rect.bottom -5, 4)
                         all_sprites.add(bullet)
@@ -214,6 +225,7 @@ def game(screen):
                     player2.dir = UP
                     player2.speedy = -2   
                 if event.key == pygame.K_x:
+                    pew_sound.play()
                     if player2.dir == LEFT:
                         bullet = Bullet(player2.rect.centerx, player2.rect.bottom -5, 2)
                         all_sprites.add(bullet)
@@ -273,7 +285,7 @@ def game(screen):
 
         hitsp1 = pygame.sprite.spritecollide(player1, bullets, False, pygame.sprite.collide_circle)
         for b in hitsp1:
-            if b.dono != 1:
+            if b.dono != 1 and b.dono != 2:
                 player1.vida -= 1
                 if player1.vida == 0:
                     player1.deixa_ovo()
@@ -283,7 +295,7 @@ def game(screen):
         
         hitsp2 = pygame.sprite.spritecollide(player2, bullets, False, pygame.sprite.collide_circle)
         for b in hitsp2:
-            if b.dono != 2:
+            if b.dono != 2 and b.dono != 1:
                 player2.vida -= 1
                 if player2.vida == 0:
                     player2.deixa_ovo()
@@ -293,7 +305,7 @@ def game(screen):
         
         hitsp3 = pygame.sprite.spritecollide(player3, bullets, False, pygame.sprite.collide_circle)
         for b in hitsp3:
-            if b.dono != 3:
+            if b.dono != 3 and b.dono != 4:
                 player3.vida -= 1
                 if player3.vida == 0:
                     player3.deixa_ovo()
@@ -303,7 +315,7 @@ def game(screen):
         
         hitsp4 = pygame.sprite.spritecollide(player4, bullets, False, pygame.sprite.collide_circle)
         for b in hitsp4:
-            if b.dono != 4:
+            if b.dono != 4 and b.dono != 3:
                 player4.vida -= 1
                 if player4.vida == 0:
                     player4.deixa_ovo()
