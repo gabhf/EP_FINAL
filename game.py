@@ -15,9 +15,14 @@ def load_assets(snd_dir):
     return assets
 
 
-def game(screen):
+def game(game_status):
+    screen = game_status.screen
+    
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
+    
+    inicio = pygame.time.get_ticks()
+    fonte = pygame.font.Font(path.join(fnt_dir, "PressStart2P.ttf"), 28)
     
     ninho_azul = ninhoA()
     ninho_vermelho = ninhoV()
@@ -98,6 +103,9 @@ def game(screen):
 
     running = True
     while running:
+        
+        timer = pygame.time.get_ticks()
+        milis = timer - inicio
         
         # Ajusta a velocidade do jogo.
         clock.tick(FPS)
@@ -386,7 +394,21 @@ def game(screen):
         paredes.draw(screen)
         grama.draw(screen)
         
+        
+        # Desenha o score
+        mi = milis % 1000
+        s = milis//1000
+        
+        text_surface = fonte.render("{0}.{1:03d}".format(s, mi), True, YELLOW)
+        text_rect = text_surface.get_rect()
+        text_rect.midtop = (WIDTH / 2,  10)
+        screen.blit(text_surface, text_rect)
+
+        
         # Depois de desenhar tudo, inverte o display.
         pygame.display.flip()
         
+        
+    game_status.milis = milis
+    
     return state

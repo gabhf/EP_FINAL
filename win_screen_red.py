@@ -5,7 +5,10 @@ from config import*
 
 from config import img_dir, BLACK, FPS, GAME, QUIT, INIT
 
-def win_screen_red(screen):
+def win_screen_red(game_status):
+    screen = game_status.screen
+    fonte = pygame.font.Font(path.join(fnt_dir, "PressStart2P.ttf"), 28)
+    
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
 
@@ -32,6 +35,11 @@ def win_screen_red(screen):
 
         screen.fill(BLACK)
         screen.blit(background, background_rect)
+        
+        text_surface = fonte.render("Tempo: {0}s".format(game_status.milis/1000), True, YELLOW)
+        text_rect = text_surface.get_rect()
+        text_rect.midtop = (WIDTH / 2,  10)
+        screen.blit(text_surface, text_rect)
 
         # Depois de desenhar tudo, inverte o display.
         pygame.display.flip()

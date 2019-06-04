@@ -5,7 +5,9 @@ from config import*
 
 from config import img_dir, BLACK, FPS, GAME, QUIT, INIT
 
-def creditss(screen):
+def creditss(game_status):
+    screen = game_status.screen
+    
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
 
